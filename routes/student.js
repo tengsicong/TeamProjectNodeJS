@@ -56,7 +56,6 @@ router.get('/student_all_project', function(req, res) {
         res.render('student/student_all_project', {
             pageTitle: 'All Projects',
             username: students['Name'],
-            project: projects.ProjectID
         });
     });
 })
