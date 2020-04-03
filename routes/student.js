@@ -2,17 +2,19 @@ const express = require('express');
 const router = express.Router();
 const studentModel = require('../models/student');
 const proposalModel = require('../models/proposal');
+const staffModel = require('../models/staff');
+const teamModel = require('../models/team');
 
 const studentID = Number(20000);
 
-
-async function getS(id) {
-    return await proposalModel.getProposalByUserID(id).then((result) =>{
-        return result;
-    });
-}
-const s = getS(studentID);
-console.log(s);
+// let s;
+// async function getS(id) {
+//     s = await proposalModel.getProposalByUserID(id).then((result) => {
+//         return result;
+//     });
+// }
+// getS(studentID)
+// console.log(s[0]);
 
 router.get('/all_project', function(req, res) {
     Promise.all([
