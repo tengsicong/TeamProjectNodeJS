@@ -1,63 +1,31 @@
 const express = require('express');
 const router = express.Router();
-const studentID = Number(20001);
-const UsersModel = require('../models/student');
+const studentModel = require('../models/student');
+const proposalModel = require('../models/proposal');
 
-// UsersModel.getStudentByID(studentID).then(function(students) {
-//     console.log(students['Name']);
-// });
-// const config = require('config-lite')(__dirname)
-// const Mongolass = require('mongolass')
-// const mongolass = new Mongolass()
-// mongolass.connect(config.mongodb, {dbName: 'TeamProject'})
-// const students = mongolass.model('students')
-// const students = require('../lib/mongo').students
+const studentID = Number(20000);
 
-// const Student = mongolass.model('students', {
-//     StudentID: {type: 'Number', required: true},
-//     UserName: {type: 'string', required: true},
-//     Password: {type: 'string', required: true},
-//     Name: {type: 'string', required: true},
-//     GroupID: {type: 'Number'},
-//     PeoplePreference: [Number],
-//     Mark: [Number],
-// });
-//
-// Student
-//     .find()
-//     .exec()
-//     .then(console.log)
-//     .catch(console.error)
+// proposalModel.getProposalByUserID(Number(20000)).then(console.log);
 
-
-
-// MongoClient.connect(url, {useUnifiedTopology: true}, function(err, db) {
-//     if (err) throw err;
-//     const dbo = db.db('TeamProject');
-//
-//     dbo.collection('Student').find({StudentID: studentID}, {Name: 1, _id: 0}).toArray(function(err, result) {
-//         if (err) throw err;
-//         console.log(result);
-//         db.close();
-//     });
-//
-// });
-
-
-
-router.get('/student_all_project', function(req, res) {
-    UsersModel.getStudentByID(studentID).then(function(students) {
-        console.log(students);
-        res.render('student/student_all_project', {
-            pageTitle: 'All Projects',
-            username: students['Name'],
+router.get('/all_project', function(req, res) {
+    Promise.all([
+        studentModel.getStudentByID(studentID),
+        proposalModel.getAllProposals(),
+        proposalModel.getProposalByUserID(studentID),
+    ])
+        .then(function(result) {
+            const student = result[0]
+            const allProposals = result[1];
+            const myProposal = result[2]
+            res.render('student/all_project', {
+                pageTitle: 'All Projects',
+                username: student.Name,
+                myProposal: myProposal[0],
+                allProposals: allProposals,
+            });
         });
-    });
 })
-
-// router.get('/', functjion(req,res){
-//     res.render( "test.ejs", {pageTitle: "test"})
-// })
+// router.get()
 
 
 module.exports = router;

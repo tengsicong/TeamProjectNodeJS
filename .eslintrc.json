@@ -15,13 +15,6 @@
         "ecmaVersion": 2018
     },
     "rules": {
-        "indent": "off",
-        "vue/script-indent": [
-            "error",
-            4,
-            {
-                "baseIndent": 1
-            }
-        ]
+        "indent": ["error", 4]
     }
 }
