@@ -1,5 +1,6 @@
 const mongo = require('../lib/mongo');
 const client = mongo.clients;
+const proposal = mongo.proposals;
 
 
 module.exports = {
@@ -8,9 +9,9 @@ module.exports = {
      * @param {ObjectId} id
      * @return {client} a client object
      */
-    getClientByID: function getUserByID(id) {
+    getClientByID: function getClientByID(id) {
         return client
-            .findOne({ClientID: id})
+            .findOne({_id: id})
             .exec();
     },
 

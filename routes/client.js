@@ -2,26 +2,27 @@ const express = require('express');
 const router = express.Router();
 const clientModel = require('../models/client');
 const proposalModel = require('../models/proposal');
+const mongoose = require('mongoose');
+
+const clientID = mongoose.Types.ObjectId('5e7d2198f8f7d40d64f332d5');
 
 
-//const clientID = "5e7d2198f8f7d40d64f332d5";
+router.get('/myproject', function(req, res, next) {
+    Promise.all([
+        clientModel.getClientByID(clientID),
+        proposalModel.getProposalByUserID(clientID),
+    ])
+        .then(function (proposals) {
+            const client = proposals[0];
 
-
-router.get('/myproject', function(req, res) {
-    // Promise.all([
-    //     clientModel.getClientByID(clientID),
-    //     proposalModel.getProposalByUserID(clientID),
-    // ])
-    //     .then(function(result) {
-    //         const client = result[0];
-    //         const myProposal = result[1];
-    //         res.render('ClientPart/proposals', {
-    //             pageTitle: 'All Projects',
-    //             username: client.Name,
-    //             myProposal: myProposal[0],
-    //         });
-    //     });
-    res.render('ClientPart/client_myproposals');
+            res.render('ClientPart/client_myproposals', {
+                proposals: proposals[1],
+                pageTitle: 'My Projects',
+                username: client.Name,
+            })
+        })
+        .catch(next)
+    //res.render('ClientPart/client_myproposals');
 });
 // router.get()
 
