@@ -1,5 +1,6 @@
 const mongo = require('../lib/mongo');
 const staff = mongo.staffs;
+const proposal = mongo.proposals;
 const team = mongo.teams;
 
 // console.log('start')
@@ -15,3 +16,25 @@ const team = mongo.teams;
 // module.exports={
 //
 // }
+
+module.exports = {
+
+    /**
+     * @return {[ObjectId]} All allocated teams' ID
+     */ 
+    getAllTeams: function getAllTeams() {
+        return staff
+            .find({},'AllocatedTeamID')
+            .exec();
+    },
+
+    /**
+     * @param {ObjectId} id
+     * @return {student} a staff object
+     */
+    getStaffByID: function getUserByID(id) {
+        return staff
+            .findById(id)
+            .exec();
+    },
+};
