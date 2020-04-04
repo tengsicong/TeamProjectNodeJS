@@ -19,7 +19,7 @@ const staffID =  mongoose.Types.ObjectId('5e7a97ab66135760069ca372');
 
 router.get('/my_project', function(req, res) {
     Promise.all([
-        staffModel.getStafftByID(staffID),
+        staffModel.getStaffByStaffID(staffID),
         staffModel.getAllocatedTeam(staffID)
     ])
     .then(function(result) {

@@ -13,18 +13,9 @@ const client = require('./client');
 
 module.exports = {
 
-    getGroupByProposalID: function getGroupByProposalID(id) {
-        return team
-            .find({ProposalID: id})
-            .exec();
-    },
-};
-
-
-module.exports = {
-
-
     /**
+     * Author: WANG
+     * User:
      * @param {Number} id
      * @return {team} a team object
      */

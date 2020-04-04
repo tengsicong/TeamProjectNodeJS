@@ -33,7 +33,7 @@ module.exports = {
      * @param {ObjectId} id
      * @return {staff} a staff object
      */
-    getStaffByID: function getStaffByID(id) {
+    getStaffByStaffID: function getStaffByID(id) {
         return staff
             .findById(id)
             .exec();
