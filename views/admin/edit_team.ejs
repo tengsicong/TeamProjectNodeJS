@@ -12,7 +12,7 @@
                     <label for="selector1" class="col-sm-2 control-label">Project / Client</label>
                     <div class="col-sm-8">
                         <select name="selector1" id="selector1" class="form-control-project">
-                            <option value="<%team.ProposalID._id%>"><%= team.ProposalID.Topic + ' / client name' %></option >
+<!--                            <option value="<%team.ProposalID._id%>"><%= team.ProposalID.Topic + ' / client name' %></option >-->
                             <% for(let i = 0; i < allProposal.length; i++) {
                                 if (allProposal[i]._id != team.ProposalID._id) { %>
                                     <option value="<%=allProposal[i]._id%>"><%=allProposal[i].Topic + ' / ' + allProposal[i].ClientID.UserName %></option>
@@ -25,8 +25,13 @@
                     <label for="selector2" class="col-sm-2 control-label">Supervisor</label>
                     <div class="col-sm-8">
                         <select name="selector2" id="selector2" class="form-control-project">
-                            <option><%= team.StaffID.Name %></option>
-                            <option>hhhhh 2</option>
+<!--                            <option><%= team.StaffID.Name %></option>-->
+                            <%for (let i = 0; i < allStaff.length; i++){
+                                if(allStaff[i]._id != team.StaffID._id){%>
+                                    <option value="<%=allStaff[i]._id%>"><%=allStaff[i].Name%></option>
+                               <%}
+                            }%>
+
                         </select>
                     </div>
                 </div>
@@ -34,8 +39,12 @@
                     <label for="selector3" class="col-sm-2 control-label">Student 1</label>
                     <div class="col-sm-8">
                         <select name="selector3" id="selector3" class="form-control-project">
-                            <option><%=team.StudentID[0].Name%></option>
-                            <option>hhhhh 2</option>
+<!--                            <option><%=team.StudentID[0].Name%></option>-->
+                            <%for (let i = 0; i < allStaff.length; i++){
+                                if(allStudent[i]._id != team.StudentID._id){%>
+                                    <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
+                                 <%}
+                            }%>
                         </select>
                     </div>
                 </div>
@@ -43,8 +52,11 @@
                     <label for="selector4" class="col-sm-2 control-label">Student 2</label>
                     <div class="col-sm-8">
                         <select name="selector4" id="selector4" class="form-control-project">
-                            <option>pppppp 1</option>
-                            <option>hhhhh 2</option>
+                            <%for (let i = 0; i < allStaff.length; i++){
+                            if(allStudent[i]._id != team.StudentID._id){%>
+                            <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
+                            <%}
+                            }%>
                         </select>
                     </div>
                 </div>
@@ -52,8 +64,11 @@
                     <label for="selector5" class="col-sm-2 control-label">Student 3</label>
                     <div class="col-sm-8">
                         <select name="selector5" id="selector5" class="form-control-project">
-                            <option>pppppp 1</option>
-                            <option>hhhhh 2</option>
+                            <%for (let i = 0; i < allStaff.length; i++){
+                            if(allStudent[i]._id != team.StudentID._id){%>
+                            <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
+                            <%}
+                            }%>
                         </select>
                     </div>
                 </div>
@@ -61,8 +76,11 @@
                     <label for="selector6" class="col-sm-2 control-label">Student 4</label>
                     <div class="col-sm-8">
                         <select name="selector6" id="selector6" class="form-control-project">
-                            <option>pppppp 1</option>
-                            <option>hhhhh 2</option>
+                            <%for (let i = 0; i < allStaff.length; i++){
+                            if(allStudent[i]._id != team.StudentID._id){%>
+                            <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
+                            <%}
+                            }%>
                         </select>
                     </div>
                 </div>
@@ -70,8 +88,11 @@
                     <label for="selector7" class="col-sm-2 control-label">Student 5</label>
                     <div class="col-sm-8">
                         <select name="selector7" id="selector7" class="form-control-project">
-                            <option>pppppp 1</option>
-                            <option>hhhhh 2</option>
+                            <%for (let i = 0; i < allStaff.length; i++){
+                            if(allStudent[i]._id != team.StudentID._id){%>
+                            <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
+                            <%}
+                            }%>
                         </select>
                     </div>
                 </div>

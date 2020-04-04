@@ -19,7 +19,6 @@ const team = mongo.teams;
 
 module.exports = {
     /**
-     *
      * @param {ObjectId} id
      * @return {[ObjectId]} allocated teams' id
      */
@@ -29,13 +28,25 @@ module.exports = {
             .exec();
     },
 
+
     /**
      * @param {ObjectId} id
-     * @return {student} a staff object
+     * @return {staff} a staff object
      */
     getStaffByID: function getStaffByID(id) {
         return staff
             .findById(id)
             .exec();
     },
+
+    /**
+     * @param {ObjectId} id
+     * @return {staff} staff object
+     */
+    getAllStaff: function getAllStaff() {
+        return staff
+            .find()
+            .exec();
+    },
+
 };

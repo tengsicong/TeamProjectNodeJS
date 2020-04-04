@@ -9,7 +9,10 @@
                     <table class="auto-group">
                         <tr width="100%">
                             <th colspan="2" style="text-align: center">
-                                SSIT Team 10
+                                SSIT Team Name?
+                                <% for(let i = 0; i < allTeam.length; i++) {
+                                    allTeam[i].TeamName
+                                }%>
                             </th>
                         </tr>
                         <tr>
@@ -22,23 +25,16 @@
                     <table class="auto-group">
                         <tr width="100%">
                             <th>
-                                Project
+                                Project/Client
                             </th>
                             <td>
                                 <select name="selector1" id="selector1" class="form-control-project">
-                                    <option>pppppp 1</option>
-                                    <option>hhhhh 2</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr width="100%">
-                            <th>
-                                Client
-                            </th>
-                            <td>
-                                <select name="selector1" id="selector1" class="form-control-project">
-                                    <option>Tom</option>
-                                    <option>Bob</option>
+                                    <!--                            <option value="<%team.ProposalID._id%>"><%= team.ProposalID.Topic + ' / client name' %></option >-->
+                                    <% for(let i = 0; i < allProposal.length; i++) {
+                                    if (allProposal[i]._id != team.ProposalID._id) { %>
+                                    <option value="<%=allProposal[i]._id%>"><%=allProposal[i].Topic + ' / ' + allProposal[i].ClientID.UserName %></option>
+                                    <%}
+                                    }%>
                                 </select>
                             </td>
                         </tr>
@@ -47,9 +43,12 @@
                                 Supervisor
                             </th>
                             <td>
-                                <select name="selector1" id="selector1" class="form-control-project">
-                                    <option>Alan</option>
-                                    <option>Jack</option>
+                                <select name="selector2" id="selector2" class="form-control-project">
+                                    <%for (let i = 0; i < allStaff.length; i++){
+                                    if(allStaff[i]._id != team.StaffID._id){%>
+                                    <option value="<%=allStaff[i]._id%>"><%=allStaff[i].Name%></option>
+                                    <%}
+                                    }%>
                                 </select>
                             </td>
                         </tr>
@@ -58,9 +57,12 @@
                                 Student 1
                             </th>
                             <td>
-                                <select name="selector1" id="selector1" class="form-control-project">
-                                    <option>A</option>
-                                    <option>b</option>
+                                <select name="selector3" id="selector3" class="form-control-project">
+                                    <%for (let i = 0; i < allStaff.length; i++){
+                                    if(allStudent[i]._id != team.StudentID._id){%>
+                                    <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
+                                    <%}
+                                    }%>
                                 </select>
                             </td>
                         </tr>
@@ -69,9 +71,12 @@
                                 Student 2
                             </th>
                             <td>
-                                <select name="selector1" id="selector1" class="form-control-project">
-                                    <option>A</option>
-                                    <option>b</option>
+                                <select name="selector3" id="selector3" class="form-control-project">
+                                    <%for (let i = 0; i < allStaff.length; i++){
+                                    if(allStudent[i]._id != team.StudentID._id){%>
+                                    <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
+                                    <%}
+                                    }%>
                                 </select>
                             </td>
                         </tr>
@@ -80,9 +85,12 @@
                                 Student 3
                             </th>
                             <td>
-                                <select name="selector1" id="selector1" class="form-control-project">
-                                    <option>A</option>
-                                    <option>b</option>
+                                <select name="selector3" id="selector3" class="form-control-project">
+                                    <%for (let i = 0; i < allStaff.length; i++){
+                                    if(allStudent[i]._id != team.StudentID._id){%>
+                                    <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
+                                    <%}
+                                    }%>
                                 </select>
                             </td>
                         </tr>
@@ -91,9 +99,12 @@
                                 Student 4
                             </th>
                             <td>
-                                <select name="selector1" id="selector1" class="form-control-project">
-                                    <option>A</option>
-                                    <option>b</option>
+                                <select name="selector3" id="selector3" class="form-control-project">
+                                    <%for (let i = 0; i < allStaff.length; i++){
+                                    if(allStudent[i]._id != team.StudentID._id){%>
+                                    <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
+                                    <%}
+                                    }%>
                                 </select>
                             </td>
                         </tr>
@@ -102,9 +113,12 @@
                                 Student 5
                             </th>
                             <td>
-                                <select name="selector1" id="selector1" class="form-control-project">
-                                    <option>A</option>
-                                    <option>b</option>
+                                <select name="selector3" id="selector3" class="form-control-project">
+                                    <%for (let i = 0; i < allStaff.length; i++){
+                                    if(allStudent[i]._id != team.StudentID._id){%>
+                                    <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
+                                    <%}
+                                    }%>
                                 </select>
                             </td>
                         </tr>
@@ -158,15 +172,43 @@
                     </tr>
                     </thead>
                     <tbody style="display: block; height: 90px;overflow-y: scroll;">
+                    <% for(let i = 0; i < allStudent.length; i++) {%>
                     <tr style="cursor:pointer;display: table;width: 100%;table-layout: fixed;" class="active">
                         <a href="#">
-                            <td scope="row">Tom</td>
-                            <td>tom1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>80</td>
+                            <td scope="row">
+
+                                <%if (allStudent[i].GroupID != null) {%>
+                                    <%= allStudent[i].Name%>
+                                <%}%>
+                                <%}%>
+                            </td>
+                            <td>
+                                <%if (allStudent[i].GroupID != null) {%>
+                                    <%= allStudent[i].UserName%>
+                                <%}%>
+
+                            </td>
+                            <td>
+
+                                <%if (allStudent[i].GroupID != null) {%>
+                                    <%= team.ProposalID.Topic%>
+                                <%}%>
+
+                            </td>
+                            <td>
+                                <%if (allStudent[i].GroupID != null) {%>
+                                    <%= team.TeamName%>
+                                <%}%>
+                            </td>
+                            <td>
+                                <%if (allStudent[i].GroupID != null) {%>
+                                    <%= (allStudent[i].StaffMark + allStudent[i].ClientMark)/ 2%>
+                                <%}%>
+
+                            </td>
                         </a>
                     </tr>
+                    <%}%>
                     <tr style="cursor:pointer;display: table;width: 100%;table-layout: fixed;">
                         <a href="#">
                             <td scope="row">Tom</td>
