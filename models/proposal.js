@@ -1,7 +1,33 @@
 const mongo = require('../lib/mongo');
 const proposal = mongo.proposals;
-const student = mongo.students;
-const client = mongo.clients;
+const mongoose = require('mongoose');
+const marked = require('marked')
+
+// const clientID = mongoose.Types.ObjectId('5e7d2198f8f7d40d64f332d5');
+// const clientID = mongoose.Types.ObjectId('5e7d2198f8f7d40d64f332d5');
+// proposal
+//     .find({ClientID:clientID})
+//     .exec()
+//     .then(function(result){
+//     console.log(result)
+// });
+
+
+// staff
+//     .find()
+//     .exec()
+//     .then(function(result) {
+//         console.log(result[0]._id);
+//         proposal
+//             .find()
+//             .populate('GroupID')
+//             .find({GroupID: {$elemMatch:{StaffID: id}}})
+//             .exec()
+//             .then(function(result) {
+//                 console.log(result);
+//             });
+//     });
+
 
 module.exports = {
 
@@ -15,33 +41,13 @@ module.exports = {
     },
 
     /**
-     * @param {Number} id Could be id of student / staff / client.
+     * @param {ObjectId} id Could be id of student / staff / client.
      * @return {[proposal]} proposals
      */
     getProposalByUserID: function getProposalByUserID(id) {
-        let result;
-
-        if (id >= Number(40000)) {
-            result = proposal
-                .find({ClientID: id})
-                .exec();
-        } else if (id >= Number(30000)) {
-            result = proposal
-                .find({Team: {$elemMatch: {StaffID: id}}})
-                .exec();
-        } else if (id >= 20000) {
-            result = student
-                .findOne({StudentID: id})
-                .exec()
-                .then(function (s) {
-                    return proposal
-                        .find({Team: {$elemMatch: {GroupID: s.GroupID}}})
-                        .exec();
-                });
-        } else {
-            console.log('getProposalByID method: UserID error');
-        }
-        return result;
+        return proposal
+            .find({ClientID: id})
+            .exec();
     },
 };
 
