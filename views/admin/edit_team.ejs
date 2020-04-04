@@ -12,12 +12,16 @@
                     <label for="selector1" class="col-sm-2 control-label">Project / Client</label>
                     <div class="col-sm-8">
                         <select name="selector1" id="selector1" class="form-control-project">
-<!--                            <option value="<%team.ProposalID._id%>"><%= team.ProposalID.Topic + ' / client name' %></option >-->
-                            <% for(let i = 0; i < allProposal.length; i++) {
-                                if (allProposal[i]._id != team.ProposalID._id) { %>
-                                    <option value="<%=allProposal[i]._id%>"><%=allProposal[i].Topic + ' / ' + allProposal[i].ClientID.UserName %></option>
-                                <%}
-                            }%>
+                            <option>None</option>
+                            <% for(let i = 0; i < allProposal.length; i++) { %>
+                                <option value="<%=allProposal[i]._id%>"
+                                <%if ((team.ProposalID != undefined) && (allProposal[i]['_id'].equals(team.ProposalID._id))) {%>
+                                    selected
+                                <%}%>
+                                >
+                                    <%=allProposal[i].Topic + ' / ' + allProposal[i].ClientID.Name %>
+                                </option>
+                            <% } %>
                         </select>
                     </div>
                 </div>
@@ -25,77 +29,41 @@
                     <label for="selector2" class="col-sm-2 control-label">Supervisor</label>
                     <div class="col-sm-8">
                         <select name="selector2" id="selector2" class="form-control-project">
-<!--                            <option><%= team.StaffID.Name %></option>-->
-                            <%for (let i = 0; i < allStaff.length; i++){
-                                if(allStaff[i]._id != team.StaffID._id){%>
-                                    <option value="<%=allStaff[i]._id%>"><%=allStaff[i].Name%></option>
-                               <%}
-                            }%>
+                            <option>None</option>
+                            <%for (let i = 0; i < allStaff.length; i++){ %>
+                                <option value="<%=allStaff[i]._id%>"
+                                        <%if ((team.StaffID != undefined) && (allStaff[i]._id.equals(team.StaffID._id))) {%>
+                                        selected
+                                        <%} %>
+                                >
+                                    <%=allStaff[i].Name%>
+                                </option>
+                            <%}%>
+                        </select>
+                    </div>
+                </div>
+                <%for (var i = 0; i < 6 ; i++) {%>
+                    <div class="form-group">
+                        <label for="selector<%= i+3 %>" class="col-sm-2 control-label">Student <%=i+1%></label>
+                        <div class="col-sm-8">
+                            <select name="selector<%= i+3 %>" id="selector<%i+3%>" class="form-control-project">
+                                <option>None</option>
+                                <%for (let j = 0; j < allStudent.length; j++){ %>
+                                    <%if (allStudent[j].GroupID == undefined | ((i<team.StudentID.length) && (allStudent[j]['_id'].equals(team.StudentID[i]._id)))) {%>
+                                    <option value="<%=allStudent[j]._id%>"
+                                        <%if ((i<team.StudentID.length) && (allStudent[j]['_id'].equals(team.StudentID[i]._id))) {%>
+                                        selected
+                                    <%}%>
+                                ><%=allStudent[j].Name + " (" + allStudent[j].UserName + ')' %></option>
+                                <% } %>
+                                <% } %>
+                            </select>
+                        </div>
+                    </div>
+                <%}%>
 
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="selector3" class="col-sm-2 control-label">Student 1</label>
-                    <div class="col-sm-8">
-                        <select name="selector3" id="selector3" class="form-control-project">
-<!--                            <option><%=team.StudentID[0].Name%></option>-->
-                            <%for (let i = 0; i < allStudent.length; i++){
-                                if(allStudent[i]._id != team.StudentID._id){%>
-                                    <option value="<%=allStudent[i]._id%>" ><%=allStudent[i].Name%></option>
-                                 <%}
-                            }%>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="selector4" class="col-sm-2 control-label">Student 2</label>
-                    <div class="col-sm-8">
-                        <select name="selector4" id="selector4" class="form-control-project">
-                            <%for (let i = 0; i < allStudent.length; i++){
-                            if(allStudent[i]._id != team.StudentID._id){%>
-                            <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
-                            <%}
-                            }%>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="selector5" class="col-sm-2 control-label">Student 3</label>
-                    <div class="col-sm-8">
-                        <select name="selector5" id="selector5" class="form-control-project">
-                            <%for (let i = 0; i < allStudent.length; i++){
-                            if(allStudent[i]._id != team.StudentID._id){%>
-                            <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
-                            <%}
-                            }%>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="selector6" class="col-sm-2 control-label">Student 4</label>
-                    <div class="col-sm-8">
-                        <select name="selector6" id="selector6" class="form-control-project">
-                            <%for (let i = 0; i < allStudent.length; i++){
-                            if(allStudent[i]._id != team.StudentID._id){%>
-                            <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
-                            <%}
-                            }%>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="selector7" class="col-sm-2 control-label">Student 5</label>
-                    <div class="col-sm-8">
-                        <select name="selector7" id="selector7" class="form-control-project">
-                            <%for (let i = 0; i < allStudent.length; i++){
-                            if(allStudent[i]._id != team.StudentID._id){%>
-                            <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
-                            <%}
-                            }%>
-                        </select>
-                    </div>
-                </div>
+
+
             </form>
             <div style="text-align: center">
                 <button onclick="window.location='team_list.html'" type="button" class="btn btn-primary">SUBMIT</button>

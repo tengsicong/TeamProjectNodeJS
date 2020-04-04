@@ -9,13 +9,18 @@ const studentModel = require('../models/student');
 const mongoose = require('mongoose');
 const adminID = mongoose.Types.ObjectId('5e7ce2e2ad9b3de5109cb8eb');
 const Tid = mongoose.Types.ObjectId('5e7b6f794f4ed29e60233aa2');
-
+const Temp = '5e7b6f794f4ed29e60233aa2';
 // adminModel.getAdminByID(adminID).then(console.log);
 // studentModel.getAllStudent().then(console.log);
-teamModel.getTeamByTeamID(Tid).then(console.log);
+teamModel.getTeamByTeamID(Tid).then(function(result) {
+    console.log(result.StaffID);
+    if (result.StaffID == undefined) {
+        console.log('true');
+    }
+});
 
 /* GET edit team page. */
-router.get('/edit_team', function(req, res, next) {
+router.get('/edit_team', function(req, res) {
     // const teamID = req.params.TeamId;
     // console.log(teamID);
     Promise.all([

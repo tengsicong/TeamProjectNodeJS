@@ -21,6 +21,7 @@ module.exports = {
      */
     getAllStudent: function getAllStudent() {
         return student
+            .populate('GroupID')
             .find()
             .exec();
     },
