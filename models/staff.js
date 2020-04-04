@@ -19,6 +19,7 @@ const team = mongo.teams;
 
 module.exports = {
     /**
+     *
      * @param {ObjectId} id
      * @return {[ObjectId]} allocated teams' id
      */
