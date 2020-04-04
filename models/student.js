@@ -9,7 +9,7 @@ module.exports = {
      * @param {Number} id
      * @return {student} a student object
      */
-    getStudentByID: function getUserByID(id) {
+    getStudentByStudentID: function getUserByStudentID(id) {
         return student
             .findOne({StudentID: id})
             .exec();

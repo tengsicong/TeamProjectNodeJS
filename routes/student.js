@@ -9,7 +9,7 @@ const studentID = mongoose.Types.ObjectId('5e7b6ace4f4ed29e60233999');
 
 router.get('/all_project', function(req, res) {
     Promise.all([
-        studentModel.getStudentByID(studentID),
+        studentModel.getStudentByStudentID(studentID),
         proposalModel.getAllProposals(),
         proposalModel.getProposalByStudentID(studentID),
     ])
