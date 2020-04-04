@@ -1,0 +1,85 @@
+<%- include('header') %>
+
+<!-- main content start-->
+<div id="page-wrapper">
+
+    <div class="blank-page widget-shadow scroll">
+        <h2 style="text-align: center"><b>Edit SSIT Team <%= team.TeamName %></b></h2>
+        <div class="row">
+            <br>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="selector1" class="col-sm-2 control-label">Project / Client</label>
+                    <div class="col-sm-8">
+                        <select name="selector1" id="selector1" class="form-control-project">
+                            <option value="<%team.ProposalID._id%>"><%= team.ProposalID.Topic + ' / client name' %></option >
+                            <% for(let i = 0; i < allProposal.length; i++) {
+                                if (allProposal[i]._id != team.ProposalID._id) { %>
+                                    <option value="<%=allProposal[i]._id%>"><%=allProposal[i].Topic + ' / ' + allProposal[i].ClientID.UserName %></option>
+                                <%}
+                            }%>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="selector2" class="col-sm-2 control-label">Supervisor</label>
+                    <div class="col-sm-8">
+                        <select name="selector2" id="selector2" class="form-control-project">
+                            <option><%= team.StaffID.Name %></option>
+                            <option>hhhhh 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="selector3" class="col-sm-2 control-label">Student 1</label>
+                    <div class="col-sm-8">
+                        <select name="selector3" id="selector3" class="form-control-project">
+                            <option><%=team.StudentID[0].Name%></option>
+                            <option>hhhhh 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="selector4" class="col-sm-2 control-label">Student 2</label>
+                    <div class="col-sm-8">
+                        <select name="selector4" id="selector4" class="form-control-project">
+                            <option>pppppp 1</option>
+                            <option>hhhhh 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="selector5" class="col-sm-2 control-label">Student 3</label>
+                    <div class="col-sm-8">
+                        <select name="selector5" id="selector5" class="form-control-project">
+                            <option>pppppp 1</option>
+                            <option>hhhhh 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="selector6" class="col-sm-2 control-label">Student 4</label>
+                    <div class="col-sm-8">
+                        <select name="selector6" id="selector6" class="form-control-project">
+                            <option>pppppp 1</option>
+                            <option>hhhhh 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="selector7" class="col-sm-2 control-label">Student 5</label>
+                    <div class="col-sm-8">
+                        <select name="selector7" id="selector7" class="form-control-project">
+                            <option>pppppp 1</option>
+                            <option>hhhhh 2</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div style="text-align: center">
+                <button onclick="window.location='team_list.html'" type="button" class="btn btn-primary">SUBMIT</button>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('footer') %>
