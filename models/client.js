@@ -9,7 +9,7 @@ module.exports = {
      * @param {ObjectId} id
      * @return {client} a client object
      */
-    getClientByID: function getClientByID(id) {
+    getClientByClientID: function getClientByClientID(id) {
         return client
             .findOne({_id: id})
             .exec();
