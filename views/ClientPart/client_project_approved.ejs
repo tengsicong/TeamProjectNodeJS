@@ -3,7 +3,7 @@
 <!-- main content start-->
 <div id="page-wrapper">
     <div class="blank-page widget-shadow scroll">
-        <h2><b>Template Project</b><span class="label label-success"
+        <h2><b><%=proposal.Topic%></b><span class="label label-success"
                                          style="float:right;font-size:15px">Approved</span></h2>
         <br>
         <div class="row">
@@ -14,7 +14,7 @@
                 <div class="panel-body" data-example-id="embedded-scrollspy">
                     <div data-spy="scroll" data-target="#navbar-example2"
                          class="scrollspy-example scroll scrollbar1">
-                        <p>This is the template of the project details</p>
+                        <p><%=proposal.Content%></p>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -25,62 +25,63 @@
     <br>
     <div class="blank-page widget-shadow scroll">
         <h2><b>Allocated Team</b></h2>
+        <% teams.forEach(function (team) { %>
         <div class="grid_3 grid_5 widget-shadow">
             <a href="/client/myteam/team_1">
                 <div>
-                    <h3><b>SSIT Team 1</b></h3>
+                    <h3><b>SSIT #<%=team.TeamName%> Team</b></h3>
                 </div>
                 <div>
                     <table width="100%">
                         <tr>
-                            <td width="40%"><p><b>Supervisor:</b> String<span><i class="fa fa-angle-right"
+                            <td width="40%"><p><b>Supervisor:</b><%=team.StaffID%><span><i class="fa fa-angle-right"
                                                                                  style="float:right;font-size: 20px"/></span>
                                 </p></td>
                         </tr>
-                        <td width="20em"><p><b>Student:</b>&nbsp student A / Student B / Student C / Student D
+                        <td width="20em"><p><b>Student:</b><%=team.StudentID%>
                             </p></td>
                         </tr>
                     </table>
                 </div>
             </a></div>
+        <% }) %>
+<!--        <div class="grid_3 grid_5 widget-shadow">-->
+<!--            <a href="/client/myteam/team_1">-->
+<!--                <div>-->
+<!--                    <h3><b>SSIT Team 2</b></h3>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <table width="100%">-->
+<!--                        <tr>-->
+<!--                            <td width="40%"><p><b>Supervisor:</b> String<span><i class="fa fa-angle-right"-->
+<!--                                                                                 style="float:right;font-size: 20px"/></span>-->
+<!--                                </p></td>-->
+<!--                        </tr>-->
+<!--                        <td width="20em"><p><b>Student:</b>&nbsp student A / Student B / Student C / Student D-->
+<!--                            </p></td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
+<!--                </div>-->
+<!--            </a></div>-->
 
-        <div class="grid_3 grid_5 widget-shadow">
-            <a href="/client/myteam/team_1">
-                <div>
-                    <h3><b>SSIT Team 2</b></h3>
-                </div>
-                <div>
-                    <table width="100%">
-                        <tr>
-                            <td width="40%"><p><b>Supervisor:</b> String<span><i class="fa fa-angle-right"
-                                                                                 style="float:right;font-size: 20px"/></span>
-                                </p></td>
-                        </tr>
-                        <td width="20em"><p><b>Student:</b>&nbsp student A / Student B / Student C / Student D
-                            </p></td>
-                        </tr>
-                    </table>
-                </div>
-            </a></div>
-
-        <div class="grid_3 grid_5 widget-shadow">
-            <a href="/client/myteam/team_1">
-                <div>
-                    <h3><b>SSIT Team 3</b></h3>
-                </div>
-                <div>
-                    <table width="100%">
-                        <tr>
-                            <td width="40%"><p><b>Supervisor:</b> String<span><i class="fa fa-angle-right"
-                                                                                 style="float:right;font-size: 20px"/></span>
-                                </p></td>
-                        </tr>
-                        <td width="20em"><p><b>Student:</b>&nbsp student A / Student B / Student C / Student D
-                            </p></td>
-                        </tr>
-                    </table>
-                </div>
-            </a></div>
+<!--        <div class="grid_3 grid_5 widget-shadow">-->
+<!--            <a href="/client/myteam/team_1">-->
+<!--                <div>-->
+<!--                    <h3><b>SSIT Team 3</b></h3>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <table width="100%">-->
+<!--                        <tr>-->
+<!--                            <td width="40%"><p><b>Supervisor:</b> String<span><i class="fa fa-angle-right"-->
+<!--                                                                                 style="float:right;font-size: 20px"/></span>-->
+<!--                                </p></td>-->
+<!--                        </tr>-->
+<!--                        <td width="20em"><p><b>Student:</b>&nbsp student A / Student B / Student C / Student D-->
+<!--                            </p></td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
+<!--                </div>-->
+<!--            </a></div>-->
     </div>
 </div>
 

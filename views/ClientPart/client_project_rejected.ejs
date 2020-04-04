@@ -3,7 +3,7 @@
 <!-- main content start-->
 <div id="page-wrapper">
     <div class="blank-page widget-shadow scroll">
-        <h2><b>Template Project</b><span class="label label-danger"
+        <h2><b><%=proposal.Topic%></b><span class="label label-danger"
                                          style="float:right;font-size:15px">Rejected</span></h2>
         <br>
         <div class="row">
@@ -14,7 +14,7 @@
                 <div class="panel-body" data-example-id="embedded-scrollspy">
                     <div data-spy="scroll" data-target="#navbar-example2"
                          class="scrollspy-example scroll scrollbar1">
-                        <p>This is the template of the project details</p>
+                        <p><%=proposal.Content%></p>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -23,7 +23,7 @@
         <table width="100%">
             <tr class="row">
                 <td width="95%">
-                    <a href="client/myproject/project/edit_project">
+                    <a href="/client/myproject/project/edit_project">
                         <button type="button" class="btn btn-primary" style="float: right">Edit</button>
                     </a>
                 </td>
