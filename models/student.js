@@ -13,6 +13,7 @@ const team = mongo.teams;
 module.exports = {
 
     /**
+     *
      * @param {Number} id
      * @return {student} a student object
      */
