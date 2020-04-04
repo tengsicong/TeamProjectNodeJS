@@ -20,11 +20,11 @@ const team = mongo.teams;
 module.exports = {
 
     /**
-     * @return {[ObjectId]} All projects' ID
+     * @return {[ObjectId]} All allocated teams' ID
      */ 
-    getAllProjects: function getAllProjects() {
+    getAllTeams: function getAllTeams() {
         return staff
-            .find({},'GroupID')
+            .find({},'AllocatedTeamID')
             .exec();
     },
 

@@ -19,7 +19,7 @@ const staffID = String('5e7a97ab66135760069ca372');
 router.get('/my_project', function(req, res) {
     Promise.all([
         staffModel.getStafftByID(staffID),
-        staffModel.getAllProjects(),
+        staffModel.getAllTeams(),
     ])
     .then(function(result) {
         const staff = result[0];
@@ -27,7 +27,7 @@ router.get('/my_project', function(req, res) {
         res.render('staff/my_project', {
             pageTitle: 'My Projects',
             username: staff.Name,
-            allProjects: allProjects,
+            allTeams: allTeams,
         });
     });
 });
