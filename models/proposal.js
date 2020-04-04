@@ -40,6 +40,13 @@ module.exports = {
             .exec();
     },
 
+
+    getProposalByID: function getProposalByID(id) {
+        return proposal
+            .findOne({_id: id})
+            .exec();
+    },
+
     /**
      * @param {ObjectId} id Could be id of student / staff / client.
      * @return {[proposal]} proposals

@@ -15,5 +15,10 @@ module.exports = {
             .exec();
     },
 
+    getClientByProposalID: function getClientByProposalID(id) {
+        return client
+            .findOne({AllProposalID: id})
+            .exec();
+    },
 
 };
