@@ -47,14 +47,27 @@ module.exports = {
 };
 
 const studentID = mongoose.Types.ObjectId('5e7b6ace4f4ed29e60233999');
-return proposal
-    .find()
-    .populate('ClientID')
-    .populate('GroupID')
-    .find({GroupId: {$elemMatch: {TeamName: 1}}})
-    .exec()
-    .then(function(result) {
-        // console.log(result)
-        console.log(result)
-    })
-    .catch()
+// client
+//     .find()
+//     .exec()
+//     .then(function(result) {
+//         console.log(result)
+//     })
+
+
+// proposal
+//     .find()
+//     .populate('ClientID')
+//     .populate('GroupID')
+//     .exec()
+//     .then(function(result) {
+//         // let arr = [];
+//         for (let i = 0; i < result.length; i++) {
+//             for (let j = 0; j < result[i].GroupID.length; j++)
+//             if (result[i]['GroupId'][j][_id] == studentID);
+//             console.log(result[i]);
+//         }
+//         // console.log(result)
+//         // console.log(result[2])
+//     })
+//     .catch()
