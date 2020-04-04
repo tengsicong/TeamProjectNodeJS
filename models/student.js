@@ -15,4 +15,12 @@ module.exports = {
             .exec();
     },
 
+    getStudentByClientID: function getStudentByClientID(id) {
+        return student
+            .populate('GroupID')
+            .find({GroupID: id})
+            .exec();
+
+    }
+
 };

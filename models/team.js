@@ -11,15 +11,6 @@ const client = require('./client');
 //         console.log(result[0]);
 //     })
 
-module.exports = {
-
-    getGroupByProposalID: function getGroupByProposalID(id) {
-        return team
-            .find({ProposalID: id})
-            .exec();
-    },
-};
-
 
 module.exports = {
 
@@ -36,4 +27,14 @@ module.exports = {
             .populate('StaffID')
             .exec();
     },
-}
+
+
+    getGroupByProposalID: function getGroupByProposalID(id) {
+        return team
+            .find({ProposalID: id})
+            .populate('StudentID')
+           // .populate('StaffID')
+            .exec();
+    },
+
+};
