@@ -1,33 +1,7 @@
 const mongo = require('../lib/mongo');
 const proposal = mongo.proposals;
-const mongoose = require('mongoose');
-const marked = require('marked')
-
-// const clientID = mongoose.Types.ObjectId('5e7d2198f8f7d40d64f332d5');
-// const clientID = mongoose.Types.ObjectId('5e7d2198f8f7d40d64f332d5');
-// proposal
-//     .find({ClientID:clientID})
-//     .exec()
-//     .then(function(result){
-//     console.log(result)
-// });
-
-
-// staff
-//     .find()
-//     .exec()
-//     .then(function(result) {
-//         console.log(result[0]._id);
-//         proposal
-//             .find()
-//             .populate('GroupID')
-//             .find({GroupID: {$elemMatch:{StaffID: id}}})
-//             .exec()
-//             .then(function(result) {
-//                 console.log(result);
-//             });
-//     });
-
+const student = mongo.students;
+const client = mongo.clients;
 
 module.exports = {
 
@@ -37,6 +11,8 @@ module.exports = {
     getAllProposals: function getAllProposals() {
         return proposal
             .find()
+            .populate('ClientID')
+            .populate('GroupID')
             .exec();
     },
 
@@ -48,60 +24,28 @@ module.exports = {
     },
 
     /**
-     * @param {ObjectId} id Could be id of student / staff / client.
-     * @return {[proposal]} proposals
+     * @param {Number} id student id.
+     * @return {[proposal]} proposal of student
      */
-    getProposalByUserID: function getProposalByUserID(id) {
+    getProposalByStudentID: function getProposalByStudentID(id) {
         return proposal
-            .find({ClientID: id})
-            .exec();
+            .populate('ClientID')
+            .populate('GroupID')
+            .find({GroupID: {StudentID: {$elemMatch: id}}})
+            .exec()
+
     },
 };
-
-
-// proposal
-//     .find()
-//     .exec()
-//     .then(function(results) {
-//         results.forEach(function(result) {
-//             result.Team.aggregate([
-//                 {
-//                     $lookup: {
-//                         from: 'staffs',
-//                         localField: 'StaffID',
-//                         foreignField: 'StaffID',
-//                         as: 's',
-//                     },
-//                 },
-//                 ], function (err, docs) {
-//                 console.log(result);
-//             })
-//         })
-//     })
-
-// proposal
-//     .aggregate([
-//         {
-//             $lookup: {
-//                 from: 'clients',
-//                 localField: 'ClientID',
-//                 foreignField: 'ClientID',
-//                 as: 'c',
-//             },
-//         },
-//         // {
-//         //     $match: {
-//         //         ProposalID: Number(0),
-//         //     }
-//         // }
-//         // {
-//         //     $lookup: {
-//         //         from: 'student',
-//         //         localField: 'ClientID',
-//         //         foreignField: 'ClientID',
-//         //         as: 's',
-//         //     },
-//         // }
-//     ])
-//     .exec()
-//     .then(console.log);
+const mongoose = require('mongoose');
+const studentID = mongoose.Types.ObjectId('5e7b6ace4f4ed29e60233999');
+return proposal
+    .find()
+    .populate('ClientID')
+    .populate('GroupID')
+    .find({GroupId: {$elemMatch: {TeamName: 1}}})
+    .exec()
+    .then(function(result) {
+        // console.log(result)
+        console.log(result)
+    })
+    .catch()

@@ -4,23 +4,14 @@ const studentModel = require('../models/student');
 const proposalModel = require('../models/proposal');
 const staffModel = require('../models/staff');
 const teamModel = require('../models/team');
-
-const studentID = Number(20000);
-
-// let s;
-// async function getS(id) {
-//     s = await proposalModel.getProposalByUserID(id).then((result) => {
-//         return result;
-//     });
-// }
-// getS(studentID)
-// console.log(s[0]);
+const mongoose = require('mongoose');
+const studentID = mongoose.Types.ObjectId('5e7b6ace4f4ed29e60233999');
 
 router.get('/all_project', function(req, res) {
     Promise.all([
         studentModel.getStudentByID(studentID),
         proposalModel.getAllProposals(),
-        proposalModel.getProposalByUserID(studentID),
+        proposalModel.getProposalByStudentID(studentID),
     ])
         .then(function(result) {
             const student = result[0];
