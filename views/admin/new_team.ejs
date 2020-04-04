@@ -9,10 +9,8 @@
                     <table class="auto-group">
                         <tr width="100%">
                             <th colspan="2" style="text-align: center">
-                                SSIT Team Name?
-                                <% for(let i = 0; i < allTeam.length; i++) {
-                                    allTeam[i].TeamName
-                                }%>
+                                SSIT Team
+                                <%= allTeam.length %>
                             </th>
                         </tr>
                         <tr>
@@ -29,12 +27,9 @@
                             </th>
                             <td>
                                 <select name="selector1" id="selector1" class="form-control-project">
-                                    <!--                            <option value="<%team.ProposalID._id%>"><%= team.ProposalID.Topic + ' / client name' %></option >-->
-                                    <% for(let i = 0; i < allProposal.length; i++) {
-                                    if (allProposal[i]._id != team.ProposalID._id) { %>
+                                    <% for(let i = 0; i < allProposal.length; i++) { %>
                                     <option value="<%=allProposal[i]._id%>"><%=allProposal[i].Topic + ' / ' + allProposal[i].ClientID.UserName %></option>
-                                    <%}
-                                    }%>
+                                    <%} %>
                                 </select>
                             </td>
                         </tr>
@@ -44,84 +39,31 @@
                             </th>
                             <td>
                                 <select name="selector2" id="selector2" class="form-control-project">
-                                    <%for (let i = 0; i < allStaff.length; i++){
-                                    if(allStaff[i]._id != team.StaffID._id){%>
+                                    <%for (let i = 0; i < allStaff.length; i++){ %>
                                     <option value="<%=allStaff[i]._id%>"><%=allStaff[i].Name%></option>
-                                    <%}
-                                    }%>
+                                    <%} %>
                                 </select>
                             </td>
                         </tr>
+
+                        <%for (let i = 0; i < 6; i++) {%>
                         <tr width="100%">
                             <th>
-                                Student 1
+                                Student <%= i+1%>
                             </th>
                             <td>
-                                <select name="selector3" id="selector3" class="form-control-project">
-                                    <%for (let i = 0; i < allStudent.length; i++){
-                                    if(allStudent[i]._id != team.StudentID._id){%>
-                                    <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
-                                    <%}
-                                    }%>
+                                <select name="selector<%=i+3%>" id="selector<%=i+3%>" class="form-control-project">
+                                    <%for (let j = 0; j < allStudent.length; j++){%>
+                                        <%if (allStudent.GroupID != undefined) { %>
+                                        <optgroup label="<%=allStudent[j].Name%>"></optgroup>
+                                        <%} else { %>
+                                        <option value="<%=allStudent[j]._id%>"><%=allStudent[j].Name%></option>
+                                        <%} }%>
                                 </select>
                             </td>
                         </tr>
-                        <tr width="100%">
-                            <th>
-                                Student 2
-                            </th>
-                            <td>
-                                <select name="selector3" id="selector3" class="form-control-project">
-                                    <%for (let i = 0; i < allStudent.length; i++){
-                                    if(allStudent[i]._id != team.StudentID._id){%>
-                                    <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
-                                    <%}
-                                    }%>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr width="100%">
-                            <th>
-                                Student 3
-                            </th>
-                            <td>
-                                <select name="selector3" id="selector3" class="form-control-project">
-                                    <%for (let i = 0; i < allStudent.length; i++){
-                                    if(allStudent[i]._id != team.StudentID._id){%>
-                                    <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
-                                    <%}
-                                    }%>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr width="100%">
-                            <th>
-                                Student 4
-                            </th>
-                            <td>
-                                <select name="selector3" id="selector3" class="form-control-project">
-                                    <%for (let i = 0; i < allStudent.length; i++){
-                                    if(allStudent[i]._id != team.StudentID._id){%>
-                                    <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
-                                    <%}
-                                    }%>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr width="100%">
-                            <th>
-                                Student 5
-                            </th>
-                            <td>
-                                <select name="selector3" id="selector3" class="form-control-project">
-                                    <%for (let i = 0; i < allStudent.length; i++){
-                                    if(allStudent[i]._id != team.StudentID._id){%>
-                                    <option value="<%=allStudent[i]._id%>"><%=allStudent[i].Name%></option>
-                                    <%}
-                                    }%>
-                                </select>
-                            </td>
-                        </tr>
+                        <%}%>
+
                         <br>
                         <tr style="border: none" width="100%">
                             <td colspan="2">
@@ -134,187 +76,7 @@
             </tr>
         </table>
     </div>
-    <div class="blank-page widget-shadow scroll" id="style-2 div1" style="width:43%; margin-left:1.3%;float:left; padding:2%;">
 
-        <table width="100%" class="auto-group">
-            <tr width="100%">
-                <td width="100%">
-                    <table width="100%" class="auto-group" style="margin-bottom: 8%">
-                        <tr>
-                            <td width="60%">
-                                <h2 style="color:#629aa9">Student list</h2>
-                            </td>
-                            <td width="13%">
-                                <input type="search" placeholder="student name..."
-                                       style="border-radius: 6px;height:22%;">
-                            </td>
-                            <td style="float: right">
-                                <input type="button" value="search"
-                                       class="btn btn-primary">
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr width="100%" >
-                <table width="100%" class="table">
-                    <thead style=" width: calc( 100% - 1em )">
-                    <tr style="display: table;width: 100%;table-layout: fixed;" >
-                        <h3><b>Allocated students</b></h3>
-                    </tr>
-                    <br>
-                    <tr style="display: table; width: calc( 100% - 1em );table-layout: fixed;">
-                        <th>Name</th>
-                        <th>E-mail</th>
-                        <th>Group</th>
-                        <th>Project</th>
-                        <th>Average Score</th>
-                    </tr>
-                    </thead>
-                    <tbody style="display: block; height: 90px;overflow-y: scroll;">
-                    <% for(let i = 0; i < allStudent.length; i++) {%>
-                    <tr style="cursor:pointer;display: table;width: 100%;table-layout: fixed;" class="active">
-                        <a href="#">
-                            <td scope="row">
-
-                                <%if (allStudent[i].GroupID != null) {%>
-                                    <%= allStudent[i].Name%>
-                                <%}%>
-                                <%}%>
-                            </td>
-                            <td>
-                                <%if (allStudent[i].GroupID != null) {%>
-                                    <%= allStudent[i].UserName%>
-                                <%}%>
-
-                            </td>
-                            <td>
-
-                                <%if (allStudent[i].GroupID != null) {%>
-                                    <%= team.ProposalID.Topic%>
-                                <%}%>
-
-                            </td>
-                            <td>
-                                <%if (allStudent[i].GroupID != null) {%>
-                                    <%= team.TeamName%>
-                                <%}%>
-                            </td>
-                            <td>
-                                <%if (allStudent[i].GroupID != null) {%>
-                                    <%= (allStudent[i].StaffMark + allStudent[i].ClientMark)/ 2%>
-                                <%}%>
-
-                            </td>
-                        </a>
-                    </tr>
-                    <%}%>
-                    <tr style="cursor:pointer;display: table;width: 100%;table-layout: fixed;">
-                        <a href="#">
-                            <td scope="row">Tom</td>
-                            <td>tom1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>80</td>
-                        </a>
-                    </tr>
-                    <tr style="cursor:pointer;display: table;width: 100%;table-layout: fixed;" class="active">
-                        <a href="#">
-                            <td scope="row">Tom</td>
-                            <td>tom1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>80</td>
-                        </a>
-                    </tr>
-                    <tr style="cursor:pointer;display: table;width: 100%;table-layout: fixed;">
-                        <a href="#">
-                            <td scope="row">Tom</td>
-                            <td>tom1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>80</td>
-                        </a>
-                    </tr>
-                    <tr style="cursor:pointer;display: table;width: 100%;table-layout: fixed;" class="active">
-                        <a href="#">
-                            <td scope="row">Tom</td>
-                            <td>tom1</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>80</td>
-                        </a>
-                    </tr>
-                    </tbody>
-                </table>
-            </tr>
-        </table>
-        <table width="100%" class="table">
-            <thead style=" width: calc( 100% - 1em )">
-            <tr style="display: table;width: 100%;table-layout: fixed;" >
-                <h3><b>Unallocated students</b></h3>
-            </tr>
-            <br>
-            <tr style="display: table; width: calc( 100% - 1em );table-layout: fixed;">
-                <th>Name</th>
-                <th>E-mail</th>
-                <th>Group</th>
-                <th>Project</th>
-                <th>Average Score</th>
-            </tr>
-            </thead>
-            <tbody style="display: block; height: 80px;overflow-y: scroll;">
-            <tr style="cursor:pointer;display: table;width: 100%;table-layout: fixed;" class="active">
-                <a href="#">
-                    <td scope="row">Tom</td>
-                    <td>tom1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>80</td>
-                </a>
-            </tr>
-            <tr style="cursor:pointer;display: table;width: 100%;table-layout: fixed;">
-                <a href="#">
-                    <td scope="row">Tom</td>
-                    <td>tom1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>80</td>
-                </a>
-            </tr>
-            <tr style="cursor:pointer;display: table;width: 100%;table-layout: fixed;" class="active">
-                <a href="#">
-                    <td scope="row">Tom</td>
-                    <td>tom1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>80</td>
-                </a>
-            </tr>
-            <tr style="cursor:pointer;display: table;width: 100%;table-layout: fixed;">
-                <a href="#">
-                    <td scope="row">Tom</td>
-                    <td>tom1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>80</td>
-                </a>
-            </tr>
-            <tr style="cursor:pointer;display: table;width: 100%;table-layout: fixed;" class="active">
-                <a href="#">
-                    <td scope="row">Tom</td>
-                    <td>tom1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>80</td>
-                </a>
-            </tr>
-            </tbody>
-        </table>
-
-    </div>
-
-</div>
 </div>
 
 

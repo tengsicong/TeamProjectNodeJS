@@ -49,7 +49,7 @@
                             <select name="selector<%= i+3 %>" id="selector<%i+3%>" class="form-control-project">
                                 <option>None</option>
                                 <%for (let j = 0; j < allStudent.length; j++){ %>
-                                    <%if (allStudent[j].GroupID == undefined | ((i<team.StudentID.length) && (allStudent[j]['_id'].equals(team.StudentID[i]._id)))) {%>
+                                    <%if ((allStudent[j].GroupID == undefined) | ((i<team.StudentID.length) && (allStudent[j]['_id'].equals(team.StudentID[i]._id)))) {%>
                                     <option value="<%=allStudent[j]._id%>"
                                         <%if ((i<team.StudentID.length) && (allStudent[j]['_id'].equals(team.StudentID[i]._id))) {%>
                                         selected

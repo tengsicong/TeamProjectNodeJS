@@ -80,4 +80,4 @@ router.get('/new_team', function(req, res, next) {
 });
 
 
-module.exports = router
+module.exports = router;
