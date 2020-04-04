@@ -1,7 +1,7 @@
 const mongo = require('../lib/mongo');
 const team = mongo.teams;
 const proposal = mongo.proposals;
-
+const client = require('./client');
 // team
 //     .find()
 //     .populate('ProposalID')
@@ -19,3 +19,21 @@ module.exports = {
             .exec();
     },
 };
+
+
+module.exports = {
+
+
+    /**
+     * @param {Number} id
+     * @return {team} a team object
+     */
+    getTeamByTeamID: function getTeamByTeamID(id) {
+        return team
+            .findOne({_id: id})
+            .populate('ProposalID')
+            .populate('StudentID')
+            .populate('StaffID')
+            .exec();
+    },
+}

@@ -32,6 +32,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/student', require('./routes/student'));
 app.use('/client', clientRouter);
+app.use('/admin', require('./routes/admin'));
+
 //app.use('/client',require('./routes/client'));
 
 // catch 404 and forward to error handler
