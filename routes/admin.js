@@ -79,5 +79,21 @@ router.get('/new_team', function(req, res, next) {
         });
 });
 
+router.get('/project_list', function(req, res, next) {
+    Promise.all([
+        adminModel.getAdminByID(adminID),
+        proposalModel.getAllProposals(),
+
+    ])
+        .then(function(result) {
+            const admin = result[0];
+
+            res.render('admin/project_list', {
+                proposal: result[1],
+                pageTitle: 'Admin main',
+                admin: admin,
+            });
+        });
+});
 
 module.exports = router;
