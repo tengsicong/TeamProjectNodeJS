@@ -1,0 +1,165 @@
+<%- include('header') %>
+
+<!-- main content start-->
+
+<div id="page-wrapper">
+    <div class="main-page">
+        <!--my team section -->
+        <br>
+        <div class="blank-page widget-shadow scroll">
+            <h2 class="title1"><b>My Team</b></h2>
+            <% if (myProposal == undefined) { %>
+                <div class="alert alert-danger" role="alert">You do not have a project currently!</div>
+            <% } else { %>
+            <div class="blank-page widget-shadow scroll">
+                <h2><b>SSIT Team 1</b></h2>
+                <br>
+                <table width="100%">
+                    <tr>
+                        <td width="80%">
+                            <table width="100%" id="TeamMemberTable">
+                                <tr>
+                                    <th width="200px">Supervisor:</th>
+                                    <td>SupervisorName</td>
+                                </tr>
+                                <tr>
+                                    <th width="200px">Team Representer:</th>
+                                    <td>Person 1</td>
+                                </tr>
+                                <tr>
+                                    <th>Team Member:</th>
+                                    <td>Person 2</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Person 3</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Person 4</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Person 5</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-lg" style="float:right" data-toggle="modal"
+                                    data-target="#setnewrepresenter" data-whatever="@SetNewRepresenter">Set new
+                                representer
+                            </button>
+                            <div class="modal fade" id="setnewrepresenter" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3 class="modal-title" id="exampleModalLabel">Set New Representer</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group" style="align-items: center">
+                                                <h4>Choose a team mumber to be the new team representer</h4>
+                                                <br>
+                                                <select class="form-control" style="width: 100%">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary">Set</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <%}%>
+            <!--my team section (show if grouped) end-->
+            <!--my team section add project preference (show if grouped, person is representer) end-->
+            <br>
+            <div class="blank-page widget-shadow scroll">
+                <div class="media">
+                    <div class="media-body">
+                        <table width="100%">
+                            <tr>
+                                <td>
+                                    <h4 class="media-heading">Team project preference</h4>
+                                    <p>As the representer of the team, you could rank your team's favourite
+                                        projects.</p>
+                                </td>
+                                <td style="text-align: right;">
+                                    <a href="StudentTeamPreference.html">
+                                        <button type="button" class="btn btn-primary">RANK</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--my project section (show if allocated)-->
+        <br>
+        <div class="blank-page widget-shadow scroll">
+            <h2 class="title1"><b>My Project</b></h2>
+
+            <div class="blank-page widget-shadow scroll">
+                <a href="approved.html">
+                    <div>
+                        <h3 style="color:black"><b>Project 1</b><span class="label label-success"
+                                                                      style="float:right;font-size:15px">Approved</span>
+                        </h3>
+                    </div>
+                    <br>
+                    <div>
+                        <table width="100%">
+                            <tr>
+                                <td width="30%"><p><b>Client:</b> String</p></td>
+                                <td width="30%"><p><b>Supervisor:</b> String</p></td>
+                                <td width="30%"><p><b>Team:</b> SSIT Team 01</p></td>
+                                <td><i class="fa fa-angle-right"
+                                       style="float:right;font-size:20px"></i></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <div>
+                        Here is the overview of the project.
+                    </div>
+                </a>
+                <br>
+            </div>
+            <br>
+            <div class="blank-page widget-shadow scroll">
+                <div class="media">
+                    <div class="media-body">
+                        <table width="100%">
+                            <tr>
+                                <td>
+                                    <h4 class="media-heading">Team project preference</h4>
+                                    <p>As the representer of the team, you could rank your team's favourite
+                                        projects.</p>
+                                </td>
+                                <td style="text-align: right;">
+                                    <a href="StudentTeamPreference.html">
+                                        <button type="button" class="btn btn-primary">RANK</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('footer') %>
