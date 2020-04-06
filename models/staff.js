@@ -25,6 +25,7 @@ module.exports = {
     getAllocatedTeamByStaffID: function getAllocatedTeamByStaffID(id) {
         return team
             .find({StaffID: id})
+            .populate('ProposalID StudentID StaffID Representer', 'Topic Name -_id')
             .exec();
     },
 

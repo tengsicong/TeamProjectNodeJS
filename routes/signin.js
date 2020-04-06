@@ -18,25 +18,25 @@ router.post('/staff/my_project', function(req, res) {
 
     Promise.all([
         staffModel.getStaffByUserName(email),
-        staffModel.getAllocatedTeamByStaffID(staffID)
+        staffModel.getAllocatedTeamByStaffID(staffID),
     ])
-    .then(function(result) {
-        let staff = result[0];
-        let allTeams = result[1];
+        .then(function(result) {
+            const staff = result[0];
+            const allTeams = result[1];
 
-        if(!staff && pw === staff.password) {
-            req.session.user = staff.username;
-            res.render('staff/my_project', {
-                pageTitle: 'My Projects',
-                username: staff.Name,
-                allTeams: allTeams,
-            });
-        }
-        else {
-            res.render('portal/signin', {pageTitle: 'Team Project - Signin'});
-            throw new Error('Invalid username or password');
-        }
-    });
+            if (!staff && pw === staff.password) {
+                req.session.user = staff.username;
+                res.render('staff/my_project', {
+                    pageTitle: 'My Projects',
+                    username: staff.Name,
+                    allTeams: allTeams,
+                });
+            }
+            else {
+                res.render('portal/signin', {pageTitle: 'Team Project - Signin'});
+                throw new Error('Invalid username or password');
+            }
+        });
 });
 
 /**
@@ -44,10 +44,10 @@ router.post('/staff/my_project', function(req, res) {
 * @return {boolean} allocated team
 */
 function isEmptyObject(obj) {
-    　　for (var key in obj) {
-    　　　　return false;
-    　　}
-    　　return true;
+    for (var key in obj) {
+        return false;
+    }
+    return true;
 };
 
 module.exports = router;
