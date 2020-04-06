@@ -29,7 +29,7 @@ router.get('/my_project', function(req, res) {
             let groupMember = [];
 
             for (let i = 0; i < allTeams.length; i++) {
-                console.log(allTeams[i]);
+                //console.log(allTeams[i].Representer);
                 groupMember[i] = '';
                 const max = (maxDisplay < allTeams[i].StudentID.length)? maxDisplay : allTeams[i].StudentID.length;
                 for (let j = 0; j < max; j++) {
