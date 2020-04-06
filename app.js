@@ -31,6 +31,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/role_select', require('./routes/role_select'));
 app.use('/signin', require('./routes/signin'));
+app.use('/signout', require('./routes/signout'));
 app.use('/signup', require('./routes/signup'));
 app.use('/student', require('./routes/student'));
 app.use('/client', require('./routes/client'));
