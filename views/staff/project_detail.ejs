@@ -1,0 +1,116 @@
+<%- include('header') %>
+
+<!-- main content start-->
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="blank-page widget-shadow scroll">
+            <h2><b>My Projects</b></h2>
+
+            <% if (allTeams.length == Number(0)) { %>
+                <div class="alert alert-danger" role="alert">You do not have a project currently!</div>
+            <% } else { %>
+                <% for(var i = 0; i < allTeams.length; i++) {%>
+                    <div class="grid_3 grid_5 widget-shadow" style="cursor:pointer" onclick="window.location.href = 'project_detail.html'">
+                        <h3 class="project-name" ><b><%= allTeams[i].ProposalID.Topic %></b><span class="label label-success" style="float:right;font-size:15px">Ongoing</span></h3>
+                        <p>
+                            <b>Representative:</b>
+                            <%= allTeams[i].Representer %>
+                        </p>
+                        <p>
+                            <b>Group Member:</b>
+                            <%= groupMember[i] %>
+                            <i class="fa fa-angle-right" style="float:right;font-size:20px"></i>
+                        </p>
+                    </div>
+                <% } %>
+            <% } %>
+
+        </div>
+    </div>
+</div>
+
+<!-- main content start-->
+<div id="page-wrapper">
+    <div class="main-page">
+        <h2 class="title1">My Project</h2>
+        <div class="blank-page widget-shadow scroll">
+            <h3>Project Name</h3>
+            <table width="100%">
+                <tr>
+                    <td width="30%"><P>Client : Department of Astronomic</P></td>
+                    <td width="30%"><p>Supervisor: Emma Norling</p></td>
+                    <td width="30%"><p>Team: Team ID</p></td>
+                </tr>
+            </table>
+            <p>member:xxxxx/xxxxx/xxxx</p>
+            <br>
+            <!--                <div class="col-md-12 panel-grids">-->
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> Panel Info</h3>
+                </div>
+                <div class="panel-body">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin iaculis quam sit amet nisi dictum, in iaculis dolor lobortis. Aenean placerat purus non faucibus sdljflsdjflsdjfojsdofjofjasjdfa us non faucibus sdljflsdjflsdjfojsdofjofjasjdfa.
+                </div>
+            </div>
+            <!--                </div>-->
+        </div>
+    </div>
+    <br>
+    <div class="blank-page widget-shadow scroll">
+        <h2><b>Meeting List</b></h2>
+        <br>
+        <br>
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading"><b>Meeting</b></div>
+            <!-- Table -->
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th>Time</th>
+                    <th>Place</th>
+                    <th>Supervisor</th>
+                </tr>
+                <tr class="clickable-row" data-href="meeting_detail_post.html" style="cursor: pointer">
+                    <th>Meeting 1</th>
+                    <td>01/01/2020 12:00</td>
+                    <td>Broad Lane Building LT01</td>
+                    <td>Emma Norling</td>
+                </tr>
+                <tr class="clickable-row" data-href="meeting_detail_pre.html" style="cursor: pointer">
+                    <th>Meeting 2</th>
+                    <td>01/01/2020 12:00</td>
+                    <td>Broad Lane Building LT01</td>
+                    <td>Emma Norling</td>
+                </tr>
+                <tr class="clickable-row" data-href="meeting_detail_pre.html" style="cursor: pointer">
+                    <th>Meeting 3</th>
+                    <td>01/01/2020 12:00</td>
+                    <td>Broad Lane Building LT01</td>
+                    <td>Emma Norling</td>
+                </tr>
+                <tr class="clickable-row" data-href="meeting_detail_pre.html" style="cursor: pointer">
+                    <th>Meeting 4</th>
+                    <td>01/01/2020 12:00</td>
+                    <td>Broad Lane Building LT01</td>
+                    <td>Emma Norling</td>
+                </tr>
+                <tr class="clickable-row" data-href="meeting_detail_pre.html" style="cursor: pointer">
+                    <th>Meeting 5</th>
+                    <td>01/01/2020 12:00</td>
+                    <td>Broad Lane Building LT01</td>
+                    <td>Emma Norling</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="blank-page widget-shadow scroll">
+        <h3><b>Mark For This Team</b><button type="submit" class="btn btn-primary clickable-row" data-href="Marking.html" style="float: right">Mark</button></h3>
+
+    </div>
+</div>
+
+
+<%- include('footer') %>
