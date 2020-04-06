@@ -37,20 +37,27 @@
             <h3>Project Name</h3>
             <table width="100%">
                 <tr>
-                    <td width="30%"><P>Client : Department of Astronomic</P></td>
-                    <td width="30%"><p>Supervisor: Emma Norling</p></td>
-                    <td width="30%"><p>Team: Team ID</p></td>
+                    <td width="30%"><P><b>Client : </b><%= project.client%>></P></td>
+                    <td width="30%"><p><b>Supervisor : </b><%= project.Team[1]%></p></td>
+                    <td width="30%"><p><b>Team: </b> <%= project.Team[0]%></p></td>
                 </tr>
             </table>
-            <p>member:xxxxx/xxxxx/xxxx</p>
+            <p>
+                <b>Member : </b>
+                <% for(var i=0;i<=teamMemberList.length;i++) {%>
+                    <p>
+                        <%= teamMemberList[i]%>>
+                    </p>
+                <% } %>
+            </p>
             <br>
             <!--                <div class="col-md-12 panel-grids">-->
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title"> Panel Info</h3>
+                    <h3 class="panel-title">Project Detail</h3>
                 </div>
                 <div class="panel-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin iaculis quam sit amet nisi dictum, in iaculis dolor lobortis. Aenean placerat purus non faucibus sdljflsdjflsdjfojsdofjofjasjdfa us non faucibus sdljflsdjflsdjfojsdofjofjasjdfa.
+                    <%= project.Content%>
                 </div>
             </div>
             <!--                </div>-->
