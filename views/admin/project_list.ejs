@@ -25,11 +25,13 @@
             <br>
             <table class="table">
                 <tbody>
+                <%let j=1;%>
                 <% for(let i =0; i < proposal.length; i++) { %>
                     <% if (proposal[i].Status == "approved") { %>
                     <tr class="active" onclick="window.location.href='project_approved.html'">
                         <a href="project_approved.html">
-                            <th scope="row">1</th>
+                            <th scope="row"><%=j%></th>
+                            <%j++;%>
                             <td style="cursor:pointer" width="40%"><b><%=proposal[i].Topic%></b></td>
                             <td style="cursor: pointer" width="50%"><%= 'client name: ' + proposal[i].ClientID.Name %></td>
                             <% if (proposal[i].GroupID != undefined) { %>
