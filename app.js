@@ -29,6 +29,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/role_select', require('./routes/role_select'));
+app.use('/signin', require('./routes/signin'));
+app.use('/signup', require('./routes/signup'));
 app.use('/student', require('./routes/student'));
 app.use('/client', require('./routes/client'));
 app.use('/admin', require('./routes/admin'));

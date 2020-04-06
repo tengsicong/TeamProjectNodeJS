@@ -20,9 +20,9 @@ const team = mongo.teams;
 module.exports = {
     /**
      * @param {ObjectId} id
-     * @return {[ObjectId]} allocated teams' id
+     * @return {[teams]} allocated team
      */
-    getAllocatedTeam: function getAllocatedTeam(id) {
+    getAllocatedTeamByStaffID: function getAllocatedTeamByStaffID(id) {
         return team
             .find({StaffID: id})
             .exec();
@@ -31,22 +31,31 @@ module.exports = {
 
     /**
      * @param {ObjectId} id
-     * @return {staff} a staff object
+     * @return {staffs} a staff object
      */
-    getStaffByStaffID: function getStaffByID(id) {
+    getStaffByStaffID: function getStaffByStaffID(id) {
         return staff
             .findById(id)
             .exec();
     },
 
     /**
+     * @param {String} name, staff's user name which is usually an email address
+     * @return {staffs} a staff object
+     */
+    getStaffByUserName: function getStaffByUserName(name) {
+        return staff
+            .find({UserName: name})
+            .exec();
+    },
+
+    /**
      * @param {ObjectId} id
-     * @return {staff} staff object
+     * @return {[staffs]} staff object
      */
     getAllStaff: function getAllStaff() {
         return staff
             .find()
             .exec();
     },
-
 };

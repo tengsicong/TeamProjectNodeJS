@@ -6,7 +6,7 @@ const staffModel = require('../models/staff');
 const teamModel = require('../models/team');
 const mongoose = require('mongoose')
 
-const staffID =  mongoose.Types.ObjectId('5e7a97ab66135760069ca372');
+const staffID = mongoose.Types.ObjectId('5e7a97ab66135760069ca372');
 
 // let s;
 // async function getS(id) {
@@ -20,7 +20,7 @@ const staffID =  mongoose.Types.ObjectId('5e7a97ab66135760069ca372');
 router.get('/my_project', function(req, res) {
     Promise.all([
         staffModel.getStaffByStaffID(staffID),
-        staffModel.getAllocatedTeam(staffID)
+        staffModel.getAllocatedTeamByStaffID(staffID)
     ])
     .then(function(result) {
         const staff = result[0];
