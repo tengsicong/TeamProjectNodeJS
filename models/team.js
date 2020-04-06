@@ -16,8 +16,8 @@ module.exports = {
     /**
      * Author: WANG
      * User:
-     * @param {Number} id
-     * @return {team} a team object
+     * @param {ObjectID} id
+     * @return {Object: team} a team object
      */
     getTeamByTeamID: function getTeamByTeamID(id) {
         return team
@@ -43,4 +43,22 @@ module.exports = {
             .find()
             .exec();
     },
-}
+
+    /**
+     * @author TENG
+     * @param { ObjectID } id
+     * @return {Object: Team}
+     */
+    getTeamByStudentID: function getTeamByStudentID(id) {
+        return team
+            .find({StudentID: {$elemMatch: {$eq: id}}})
+            .populate('Proposal')
+            .populate('StudentID')
+            .populate('StaffID')
+            .populate('Preference')
+            .populate('Representer')
+            .populate('client_meetings')
+            .populate('staff_meetings')
+            .exec();
+    },
+};

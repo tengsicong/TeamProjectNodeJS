@@ -7,25 +7,49 @@ const teamModel = require('../models/team');
 const mongoose = require('mongoose');
 const studentID = mongoose.Types.ObjectId('5e7b6ace4f4ed29e60233999');
 
-router.get('/all_project', function(req, res) {
+// proposalModel.getProposalByStudentID(studentID).then(function (result) {
+//     console.log('1\n' + result);
+//     console.log('2\n' + result.GroupID);
+//     const j = JSON.parse(result.GroupID.text())
+//     console.log('3\n' + j);
+// })
+
+router.get('/all_projects', function(req, res) {
     Promise.all([
         studentModel.getStudentByStudentID(studentID),
-        proposalModel.getAllProposals(),
+        proposalModel.getAllProposals('approved'),
         proposalModel.getProposalByStudentID(studentID),
     ])
         .then(function(result) {
             const student = result[0];
             const allProposals = result[1];
             const myProposal = result[2];
-            res.render('student/all_project', {
+            // console.log('1' + student);
+            console.log('2' + allProposals);
+            // console.log('3' + myProposal.GroupID)
+            res.render('student/all_projects', {
                 pageTitle: 'All Projects',
                 username: student.Name,
-                myProposal: myProposal[0],
+                myProposal: myProposal,
                 allProposals: allProposals,
             });
         });
 });
-// router.get()
+
+router.get('/homepage', function(req, res) {
+    Promise.all([
+        studentModel.getStudentByStudentID(studentID),
+        teamModel.getTeamByStudentID(studentID),
+
+    ])
+        .then(function(result) {
+            const student = result[0];
+            res.render('student/homepage', {
+                pageTitle: 'Homepage',
+                username: student.Name,
+            });
+        });
+});
 
 
 module.exports = router;

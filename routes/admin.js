@@ -12,12 +12,12 @@ const Tid = mongoose.Types.ObjectId('5e7b6f794f4ed29e60233aa2');
 const Temp = '5e7b6f794f4ed29e60233aa2';
 // adminModel.getAdminByID(adminID).then(console.log);
 // studentModel.getAllStudent().then(console.log);
-teamModel.getTeamByTeamID(Tid).then(function(result) {
-    console.log(result.StaffID);
-    if (result.StaffID == undefined) {
-        console.log('true');
-    }
-});
+// teamModel.getTeamByTeamID(Tid).then(function(result) {
+//     console.log(result.StaffID);
+//     if (result.StaffID == undefined) {
+//         console.log('true');
+//     }
+// });
 
 /* GET edit team page. */
 router.get('/edit_team', function(req, res) {

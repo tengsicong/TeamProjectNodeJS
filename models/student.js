@@ -12,7 +12,8 @@ module.exports = {
      */
     getStudentByStudentID: function getUserByStudentID(id) {
         return student
-            .findOne({StudentID: id})
+            .findOne({_id: id})
+            .populate('GroupID')
             .exec();
     },
     /**
@@ -31,6 +32,6 @@ module.exports = {
             .populate('GroupID')
             .find({GroupID: id})
             .exec();
-
-    }
+    },
 };
+
