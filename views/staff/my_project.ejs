@@ -13,7 +13,7 @@
                         <div class="grid_3 grid_5 widget-shadow" style="cursor:pointer" onclick="window.location.href = 'project_detail.html'">
                             <h3 class="project-name" >
                                 <b>
-                                    <% if (allTeams[i].ProposalID.Topic === undefined) { %>
+                                    <% if (allTeams[i].ProposalID === undefined) { %>
                                         Untitled Project
                                     <% } else { %>
                                         <%= allTeams[i].ProposalID.Topic %>
@@ -23,7 +23,7 @@
                             </h3>
                             <p>
                                 <b>Representative:</b>
-                                <% if (allTeams[i].Representer.Name === undefined) { %>
+                                <% if (allTeams[i].Representer === undefined) { %>
                                     Have not appointed yet
                                 <% } else { %>
                                     <%= allTeams[i].Representer.Name %>

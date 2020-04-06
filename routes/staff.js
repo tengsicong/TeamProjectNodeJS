@@ -20,7 +20,7 @@ const staffID = mongoose.Types.ObjectId('5e7a97ab66135760069ca372');
 router.get('/my_project', function(req, res) {
     Promise.all([
         staffModel.getStaffByStaffID(staffID),
-        staffModel.getAllocatedTeamByStaffID(staffID)
+        staffModel.getAllocatedTeamByStaffID(staffID),
     ])
         .then(function(result) {
             const maxDisplay = 4;
@@ -29,7 +29,7 @@ router.get('/my_project', function(req, res) {
             let groupMember = [];
 
             for (let i = 0; i < allTeams.length; i++) {
-                //console.log(allTeams[i].Representer);
+                //console.log(allTeams[i]);
                 groupMember[i] = '';
                 const max = (maxDisplay < allTeams[i].StudentID.length)? maxDisplay : allTeams[i].StudentID.length;
                 for (let j = 0; j < max; j++) {
