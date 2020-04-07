@@ -8,23 +8,27 @@ const studentModel = require('../models/student');
 const staffModel = require('../models/staff');
 
 router.post('/', function(req, res) {
-    const email = req.fields.email;
-    const pw = req.fields.password;
+    const email = req.body.email;
+    const pw = req.body.password;
+    //console.log('Login(username pw):' + email + ' ' + pw);
 
     Promise.all([
         staffModel.getStaffByUserName(email),
     ])
         .then(function(result) {
             const staff = result[0];
-
-            if (!staff && pw === staff.password) {
+            console.log(staff);
+            if (staff !== undefined) {
+                console.log('pw:' + staff.Password);
+            }
+            if (staff !== undefined && pw === staff.Password) {
                 req.session.userinfo = staff.UserName;
                 req.session.username = staff.Name;
                 res.redirect('/staff/my_project');
             }
             else {
                 res.redirect('/signin');
-                throw new Error('Invalid username or password');
+                console.log('Invalid username or password');
             }
         });
 });

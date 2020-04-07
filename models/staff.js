@@ -46,7 +46,7 @@ module.exports = {
      */
     getStaffByUserName: function getStaffByUserName(name) {
         return staff
-            .find({UserName: name})
+            .findOne({UserName: name})
             .exec();
     },
 
