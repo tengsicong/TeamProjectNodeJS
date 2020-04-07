@@ -8,29 +8,16 @@ const mongoose = require('mongoose')
 
 const staffID = mongoose.Types.ObjectId('5e7a97ab66135760069ca372');
 
-// let s;
-// async function getS(id) {
-//     s = await proposalModel.getProposalByUserID(id).then((result) => {
-//         return result;
-//     });
-// }
-// getS(studentID)
-// console.log(s[0]);
-
 router.get('/my_project', function(req, res) {
-    if(req.session.userinfo) {
-        Promise.all([
-            //staffModel.getStaffByStaffID(staffID),
-            //staffModel.getAllocatedTeamByStaffID(staffID),
-            staffModel.getStaffByUserName(req.session.userinfo),
-        ])
-            .then(function(result) {
-                const staff = result[0];
+    if (req.session.userinfo) {
+        Promise.all([staffModel.getStaffByUserName(req.session.userinfo)])
+            .then(function(result1) {
+                const staff = result1[0];
 
-                Promise.all(staffModel.getAllocatedTeamByStaffID(staff._id))
-                    .then(function(result) {
+                Promise.all([staffModel.getAllocatedTeamByStaffID(staff._id)])
+                    .then(function(result2) {
                         const maxDisplay = 4;
-                        const allTeams = result;
+                        const allTeams = result2[0];
                         let groupMember = [];
                         
                         for (let i = 0; i < allTeams.length; i++) {

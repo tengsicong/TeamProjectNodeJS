@@ -12,9 +12,9 @@ router.post('/', function(req, res) {
     const pw = req.body.password;
     //console.log('Login(username pw):' + email + ' ' + pw);
 
-    Promise.all(staffModel.getStaffByUserName(email))
+    Promise.all([staffModel.getStaffByUserName(email)])
         .then(function(result) {
-            const staff = result;
+            const staff = result[0];
             /*if (staff !== undefined) {
                 console.log('pw:' + staff.Password);
             }*/

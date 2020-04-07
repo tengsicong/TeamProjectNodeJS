@@ -9,7 +9,9 @@ const staffModel = require('../models/staff');
 router.get('/', function(req, res) {
     req.session.cookie.maxAge = 0;
     req.session.destroy(function(err) {
-        console.log(err);
+        if(err) {
+            console.log(err);
+        }
     });
 
     res.render('portal/signout', {
