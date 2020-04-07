@@ -19,8 +19,8 @@ router.post('/', function(req, res) {
                 console.log('pw:' + staff.Password);
             }*/
             if (staff !== undefined && pw === staff.Password) {
-                req.session.userinfo = staff.UserName;
-                req.session.username = staff.Name;
+                req.session.userinfo = staff._id;
+                req.session.username = staff.UserName;
                 res.redirect('/staff/my_project');
             }
             else {
