@@ -90,7 +90,7 @@ router.get('/project_list', function(req, res, next) {
 
             res.render('admin/project_list', {
                 proposal: result[1],
-                pageTitle: 'Admin main',
+                pageTitle: 'Project List',
                 admin: admin,
             });
         });

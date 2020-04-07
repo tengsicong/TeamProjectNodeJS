@@ -25,16 +25,19 @@ module.exports = {
     getAllocatedTeamByStaffID: function getAllocatedTeamByStaffID(id) {
         return team
             .find({StaffID: id})
-            .populate('ProposalID StudentID StaffID Representer', 'Topic Name -_id')
+            .populate('StaffID','Name')
+            .populate('StudentID','Name')
+            .populate('Representer','Name')
+            .populate({path: 'ProposalID', populate: {path: 'ClientID',select: 'Name'}})
+            //.populate({path: 'StaffMeetingID'})
             .exec();
     },
 
-
     /**
      * @param {ObjectId} id
-     * @return {staffs} a staff object
+     * @return {project} a project
      */
-    getStaffByStaffID: function getStaffByStaffID(id) {
+    getStaffByStaffID: function getProjectByStaffID(id) {
         return staff
             .findById(id)
             .exec();
@@ -46,12 +49,11 @@ module.exports = {
      */
     getStaffByUserName: function getStaffByUserName(name) {
         return staff
-            .find({UserName: name})
+            .findOne({UserName: name})
             .exec();
     },
 
     /**
-     * @param {ObjectId} id
      * @return {[staffs]} staff object
      */
     getAllStaff: function getAllStaff() {

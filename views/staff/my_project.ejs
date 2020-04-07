@@ -10,11 +10,24 @@
                     <div class="alert alert-danger" role="alert">You do not have a project currently!</div>
                 <% } else { %>
                     <% for(var i = 0; i < allTeams.length; i++) {%>
-                        <div class="grid_3 grid_5 widget-shadow" style="cursor:pointer" onclick="window.location.href = 'project_detail.html'">
-                            <h3 class="project-name" ><b><%= allTeams[i].ProposalID.Topic %></b><span class="label label-success" style="float:right;font-size:15px">Ongoing</span></h3>
+                        <div class="grid_3 grid_5 widget-shadow" style="cursor:pointer" onclick="window.location.href = 'project_detail'">
+                            <h3 class="project-name" >
+                                <b>
+                                    <% if (allTeams[i].ProposalID === undefined) { %>
+                                        Untitled Project
+                                    <% } else { %>
+                                        <%= allTeams[i].ProposalID.Topic %>
+                                    <% } %>
+                                </b>
+                                <span class="label label-success" style="float:right;font-size:15px">Ongoing</span>
+                            </h3>
                             <p>
                                 <b>Representative:</b>
-                                <%= allTeams[i].Representer %>
+                                <% if (allTeams[i].Representer === undefined) { %>
+                                    Have not appointed yet
+                                <% } else { %>
+                                    <%= allTeams[i].Representer.Name %>
+                                <% } %>
                             </p>
                             <p>
                                 <b>Group Member:</b> 

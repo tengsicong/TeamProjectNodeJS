@@ -13,8 +13,6 @@
         </h2>
         <% proposals.forEach(function (proposal) { %>
         <div class="grid_3 grid_5 widget-shadow">
-
-
                 <% if (proposal.Status == "approved") { %>
             <a href="/client/myproject/project_approved?id=<%=proposal._id%>">
                 <div>
@@ -34,7 +32,7 @@
                 </h3>
                 </div>
                 <div>
-                    <%=proposal.Content%><i class="fa fa-angle-right"
+                    <%=proposal.Content.substring(0,200) + '...'%><i class="fa fa-angle-right"
                                               style="float:right;font-size:20px"></i>
                 </div>
             </a>
@@ -45,16 +43,13 @@
                     </h3>
                 </div>
                 <div>
-                    <%=proposal.Content%><i class="fa fa-angle-right"
+                    <%=proposal.Content.substring(0,200) + '...'%><i class="fa fa-angle-right"
                                               style="float:right;font-size:20px"></i>
                 </div>
             </a>
                 <%} else { %>
                         <div class="alert alert-danger" role="alert">You do not have a project currently!</div>
                 <%}%>
-
-
-
         </div>
         <% }) %>
 <!--        <div class="grid_3 grid_5 widget-shadow">-->

@@ -25,6 +25,8 @@ module.exports = {
             .populate('ProposalID')
             .populate('StudentID')
             .populate('StaffID')
+            .populate('ClientMeetingID')
+            .populate('Representer')
             .exec();
     },
 
@@ -32,6 +34,7 @@ module.exports = {
         return team
             .find({ProposalID: id})
             .populate('StudentID')
+            .populate('StaffID')
             // .populate('StaffID')
             .exec();
     },
@@ -61,4 +64,22 @@ module.exports = {
             .populate('staff_meetings')
             .exec();
     },
+
+
+    // /**
+    //  * @param { ObjectID } client id
+    //  * @return {Object: Team}
+    //  */
+    // getTeamByClientID: function getTeamByClientID(id) {
+    //     return team
+    //         .find({StudentID: {$elemMatch: {$eq: id}}})
+    //         .populate('Proposal')
+    //         .populate('StudentID')
+    //         .populate('StaffID')
+    //         .populate('Preference')
+    //         .populate('Representer')
+    //         .populate('client_meetings')
+    //         .populate('staff_meetings')
+    //         .exec();
+    // },
 };

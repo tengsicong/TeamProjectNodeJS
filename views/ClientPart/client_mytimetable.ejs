@@ -49,96 +49,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <%for(let i=0;i<meetings.length;i++){%>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>1</td>
-                                    <td>xx/xx/xxxx</td>
-                                    <td>Done</td>
+                                    <th scope="row"><%=i+1%></th>
+                                    <td><%=meetings[i].GroupID.TeamName%></td>
+                                    <td><%=meetings[i].Date%></td>
+                                    <td><%=meetings[i].Place%></td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>1</td>
-                                    <td>xx/xx/xxxx</td>
-                                    <td>Coming</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>2</td>
-                                    <td>xx/xx/xxxx</td>
-                                    <td>Coming</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>3</td>
-                                    <td>xx/xx/xxxx</td>
-                                    <td>Coming</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">6</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">7</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">8</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">9</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">10</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">11</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">12</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">13</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">14</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">15</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                <%}%>
                                 </tbody>
                             </table>
                         </div>
@@ -153,12 +71,9 @@
                             <div class="form-group" style="align-items: center">
                                 <select class="form-control" style="width: 60%">
                                     <option>-</option>
-                                    <option>Client Meeting 1</option>
-                                    <option>Client Meeting 2</option>
-                                    <option>Client Meeting 3</option>
-                                    <option>Client Meeting 4</option>
-                                    <option>Client Meeting 5</option>
-                                    <option>Client Meeting 6</option>
+                                    <%for(let i=0;i<meetings.length;i++){%>
+                                    <option id="<%meetings[i]._id%>">Client Meeting <%=i+1%></option>
+                                    <%}%>
                                 </select>
                             </div>
                             <div>Change time to:</div>
