@@ -12,15 +12,12 @@ router.post('/', function(req, res) {
     const pw = req.body.password;
     //console.log('Login(username pw):' + email + ' ' + pw);
 
-    Promise.all([
-        staffModel.getStaffByUserName(email),
-    ])
+    Promise.all(staffModel.getStaffByUserName(email))
         .then(function(result) {
-            const staff = result[0];
-            console.log(staff);
-            if (staff !== undefined) {
+            const staff = result;
+            /*if (staff !== undefined) {
                 console.log('pw:' + staff.Password);
-            }
+            }*/
             if (staff !== undefined && pw === staff.Password) {
                 req.session.userinfo = staff.UserName;
                 req.session.username = staff.Name;
@@ -43,16 +40,5 @@ router.get('/', function(req, res) {
         });
     }
 });
-
-/**
-* @param {Object} obj
-* @return {boolean} allocated team
-*/
-function isEmptyObject(obj) {
-    for (var key in obj) {
-        return false;
-    }
-    return true;
-};
 
 module.exports = router;

@@ -27,10 +27,10 @@ router.get('/my_project', function(req, res) {
             .then(function(result) {
                 const staff = result[0];
 
-                Promise.all([staffModel.getAllocatedTeamByStaffID(staff._id)])
+                Promise.all(staffModel.getAllocatedTeamByStaffID(staff._id))
                     .then(function(result) {
                         const maxDisplay = 4;
-                        const allTeams = result[1];
+                        const allTeams = result;
                         let groupMember = [];
                         
                         for (let i = 0; i < allTeams.length; i++) {
