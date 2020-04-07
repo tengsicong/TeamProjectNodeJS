@@ -34,7 +34,7 @@
                             <%j++;%>
                             <td style="cursor:pointer" width="40%"><b><%=proposal[i].Topic%></b></td>
                             <td style="cursor: pointer" width="50%"><%= 'client name: ' + proposal[i].ClientID.Name %></td>
-                            <% if (proposal[i].GroupID != undefined) { %>
+                            <% if (proposal[i].GroupID.length>0) { %>
                                 <td width="5%"><span class="label label-success" style="float:right;font-size:15px">Allocated</span>
                                 </td>
                             <%} else { %>

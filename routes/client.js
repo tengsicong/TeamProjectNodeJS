@@ -69,7 +69,7 @@ router.get('/myproject/project_pending', function(req, res, next) {
         clientModel.getClientByProposalID(proposalID),
     ])
         .then(function(proposal) {
-            console.log(proposal);
+           // console.log(proposal);
             res.render('ClientPart/client_project_pending', {
                 proposal: proposal[0],
                 pageTitle: proposal[0].Topic,
@@ -137,7 +137,6 @@ router.get('/myteam/teampage', function(req, res,next) {
         teamModel.getTeamByTeamID(teamID),
     ])
         .then(function(result) {
-            console.log(result[1].ClientMeetingID[0].Date)
             res.render('ClientPart/client_teampage', {
                 team: result[1],
                 pageTitle: 'SSIT TEAM'+result[1].TeamName,
@@ -156,7 +155,6 @@ router.get('/myteam/teammark', function(req, res, next) {
         teamModel.getTeamByTeamID(teamID),
     ])
         .then(function(result) {
-            console.log(result[1].ClientMeetingID[0].Date)
             res.render('ClientPart/client_teammark', {
                 team: result[1],
                 pageTitle: 'SSIT TEAM '+result[1].TeamName+' Mark',
