@@ -32,9 +32,14 @@ module.exports = {
         return result;
     },
 
+    /**
+     * @param {ObjectId} proposal id.
+     * @return {[proposal]} proposal
+     */
     getProposalByProposalID: function getProposalByProposalID(id) {
         return proposal
             .findOne({_id: id})
+            .populate({path:'GroupID',populate:{path: "StaffID"}})
             .exec();
     },
 
@@ -63,11 +68,31 @@ module.exports = {
 
     getProposalByClientID: function getProposalByClientID(id) {
         return proposal
-            .find({ClientID: id})
-            .exec();
+            .find({ClientID:id})
+            .populate('ClientID')
+            .populate({path:'GroupID',populate:{path:'StaffID'}})
+            .populate({path:'GroupID',populate:{path:'StudentID'}})
+            .exec()
+
     },
 };
 
 // const id = mongoose.Types.ObjectId('5e7b6ace4f4ed29e60233999');
 
 
+// proposal
+//     .find()
+//     .populate('ClientID')
+//     .populate('GroupID')
+//     .exec()
+//     .then(function(result) {
+//         // let arr = [];
+//         for (let i = 0; i < result.length; i++) {
+//             for (let j = 0; j < result[i].GroupID.length; j++)
+//             if (result[i]['GroupId'][j][_id] == studentID);
+//             console.log(result[i]);
+//         }
+//         // console.log(result)
+//         // console.log(result[2])
+//     })
+//     .catch()

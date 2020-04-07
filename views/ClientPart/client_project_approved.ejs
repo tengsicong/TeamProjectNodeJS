@@ -25,26 +25,36 @@
     <br>
     <div class="blank-page widget-shadow scroll">
         <h2><b>Allocated Team</b></h2>
+        <% if(teams.length>0){%>
         <% teams.forEach(function (team) { %>
         <div class="grid_3 grid_5 widget-shadow">
-            <a href="/client/myteam/team_1">
+            <a href="/client/myteam/teampage?id=<%=team._id%>">
                 <div>
                     <h3><b>SSIT #<%=team.TeamName%> Team</b></h3>
                 </div>
                 <div>
                     <table width="100%">
                         <tr>
-                            <td width="40%"><p><b>Supervisor:</b><%= 'sdfsf'%><span><i class="fa fa-angle-right"
+                            <td width="40%"><p><b>Supervisor: </b><%=team.StaffID.Name%><span><i class="fa fa-angle-right"
                                                                                  style="float:right;font-size: 20px"/></span>
                                 </p></td>
                         </tr>
-                        <td width="20em"><p><b>Student:</b><%=team.StudentID%>
+                        <td width="20em"><p><b>Student:</b>
+                                <%let students = team.StudentID;%>
+                                <% if (students.length>0){%>
+                                    <% students.forEach(function (student){ %>
+                                    <%=student.Name%>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <% })} %>
                             </p></td>
+
                         </tr>
                     </table>
                 </div>
             </a></div>
-        <% }) %>
+        <% })%>
+        <%}else {%>
+        <div class="alert alert-danger" role="alert">Not allocated yet!</div>
+        <%}%>
 <!--        <div class="grid_3 grid_5 widget-shadow">-->
 <!--            <a href="/client/myteam/team_1">-->
 <!--                <div>-->

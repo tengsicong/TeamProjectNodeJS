@@ -4,7 +4,8 @@ const clientModel = require('../models/client');
 const proposalModel = require('../models/proposal');
 const teamModel = require('../models/team');
 const mongoose = require('mongoose');
-const studentModel = require('../models/student')
+const studentModel = require('../models/student');
+const clientMeetingModel = require('../models/clientmeetings');
 
 const clientID = mongoose.Types.ObjectId('5e7d2198f8f7d40d64f332d5');
 
@@ -27,43 +28,41 @@ router.get('/myproject', function(req, res, next) {
     // res.render('ClientPart/client_myproposals');
 });
 
+router.get('/myproject/create_project', function(req, res,next) {
+    Promise.all([
+        clientModel.getClientByClientID(clientID),
+    ])
+        .then(function(result) {
+            const client = result[0];
+
+            res.render('ClientPart/client_create_project', {
+                pageTitle: 'Create Project',
+                username: client.Name,
+            });
+        })
+        .catch(next);
+});
 
 router.get('/myproject/project_approved', function(req, res, next) {
-    console.log(req.query.id);
     const proposalID = mongoose.Types.ObjectId(req.query.id);
     Promise.all([
         proposalModel.getProposalByProposalID(proposalID),
         clientModel.getClientByProposalID(proposalID),
         teamModel.getGroupByProposalID(proposalID),
     ])
-        .then(function(proposal) {
-            console.log(proposal);
+        .then(function(result) {
             res.render('ClientPart/client_project_approved', {
-                proposal: proposal[0],
-                pageTitle: proposal[0].Topic,
-                username: proposal[1].Name,
-                teams: proposal[2],
+                proposal: result[0],
+                pageTitle: result[0].Topic,
+                username: result[1].Name,
+                teams: result[2],
             });
         })
         .catch(next);
 });
 
-
-router.get('/myproject/create_project', function(req, res) {
-    res.render('ClientPart/client_create_project', {
-        pageTitle: 'Create Project',
-    });
-});
-
-
-router.get('/mytimetable', function(req, res) {
-    res.render('ClientPart/client_mytimetable', {
-        pageTitle: 'My Timetable',
-    });
-});
-
 router.get('/myproject/project_pending', function(req, res, next) {
-    console.log(req.query.id);
+    //console.log(req.query.id);
     const proposalID = mongoose.Types.ObjectId(req.query.id);
     Promise.all([
         proposalModel.getProposalByProposalID(proposalID),
@@ -75,61 +74,117 @@ router.get('/myproject/project_pending', function(req, res, next) {
                 proposal: proposal[0],
                 pageTitle: proposal[0].Topic,
                 username: proposal[1].Name,
+                Replies: result[0].Replies,
             });
         })
         .catch(next);
 });
 
 router.get('/myproject/project_rejected', function(req, res, next) {
-    console.log(req.query.id);
+    //console.log(req.query.id);
     const proposalID = mongoose.Types.ObjectId(req.query.id);
     Promise.all([
         proposalModel.getProposalByProposalID(proposalID),
         clientModel.getClientByProposalID(proposalID),
     ])
-        .then(function(proposal) {
-            console.log(proposal);
+        .then(function(result) {
             res.render('ClientPart/client_project_rejected', {
-                proposal: proposal[0],
-                pageTitle: proposal[0].Topic,
-                username: proposal[1].Name,
+                proposal: result[0],
+                pageTitle: result[0].Topic,
+                username: result[1].Name,
+                Replies: result[0].Replies,
             });
         })
         .catch(next);
 });
 
-router.get('/myproject/project/edit_project', function(req, res) {
-    res.render('ClientPart/client_edit_project', {
-        pageTitle: 'Edit Project',
-    });
-});
 
-router.get('/myteam', function(req, res) {
+router.get('/edit_project', function(req, res,next) {
+    const proposalID = mongoose.Types.ObjectId(req.query.id);
     Promise.all([
-        teamModel.getGroupByClientID(clientID),
-        studentModel.getStudentByClientID(clientID),
+        proposalModel.getProposalByProposalID(proposalID),
+        clientModel.getClientByProposalID(proposalID),
     ])
-        .then(function (result) {
-            console.log(result[0]);
-            console.log(result[1]);
+        .then(function(result) {
+            res.render('ClientPart/client_edit_project', {
+                proposal: result[0],
+                pageTitle: 'Edit Project',
+                username: result[1].Name,
+            });
         })
-
-
-    res.render('ClientPart/client_myteams', {
-        pageTitle: 'My Team',
-    });
+        .catch(next);
 });
 
-router.get('/myteam/team_1', function(req, res) {
-    res.render('ClientPart/client_team_1', {
-        pageTitle: 'Team 1',
-    });
+router.get('/myteam', function(req, res,next) {
+    Promise.all([
+        clientModel.getClientByClientID(clientID),
+        proposalModel.getProposalByClientID(clientID),
+    ])
+        .then(function(result) {
+            res.render('ClientPart/client_myteams', {
+                proposals: result[1],
+                pageTitle: 'My Teams',
+                username: result[0].Name,
+            });
+        })
+        .catch(next);
 });
 
-router.get('/myteam/teammark', function(req, res) {
-    res.render('ClientPart/client_teammark', {
-        pageTitle: 'Marking',
-    });
+router.get('/myteam/teampage', function(req, res,next) {
+    const teamID = mongoose.Types.ObjectId(req.query.id);
+    Promise.all([
+        clientModel.getClientByClientID(clientID),
+        teamModel.getTeamByTeamID(teamID),
+    ])
+        .then(function(result) {
+            console.log(result[1].ClientMeetingID[0].Date)
+            res.render('ClientPart/client_teampage', {
+                team: result[1],
+                pageTitle: 'SSIT TEAM'+result[1].TeamName,
+                username: result[0].Name,
+                meetings: result[1].ClientMeetingID,
+            });
+        })
+        .catch(next);
 });
+
+
+router.get('/myteam/teammark', function(req, res, next) {
+    const teamID = mongoose.Types.ObjectId(req.query.id);
+    Promise.all([
+        clientModel.getClientByClientID(clientID),
+        teamModel.getTeamByTeamID(teamID),
+    ])
+        .then(function(result) {
+            console.log(result[1].ClientMeetingID[0].Date)
+            res.render('ClientPart/client_teammark', {
+                team: result[1],
+                pageTitle: 'SSIT TEAM '+result[1].TeamName+' Mark',
+                username: result[0].Name,
+                meetings: result[1].ClientMeetingID,
+            });
+        })
+        .catch(next);
+});
+
+
+
+router.get('/mytimetable', function(req, res,next) {
+    Promise.all([
+        clientModel.getClientByClientID(clientID),
+        clientMeetingModel.getClientMeetingByClientID(clientID),
+    ])
+        .then(function(result) {
+            res.render('ClientPart/client_mytimetable', {
+                meetings: result[1],
+                pageTitle: 'My TimeTable',
+                username: result[0].Name,
+            });
+        })
+        .catch(next);
+});
+
+
+
 
 module.exports = router;
