@@ -79,36 +79,24 @@
                     <th>Place</th>
                     <th>Supervisor</th>
                 </tr>
-                <tr class="clickable-row" data-href="meeting_detail_post.html" style="cursor: pointer">
-                    <th>Meeting 1</th>
-                    <td>01/01/2020 12:00</td>
-                    <td>Broad Lane Building LT01</td>
-                    <td>Emma Norling</td>
-                </tr>
-                <tr class="clickable-row" data-href="meeting_detail_pre.html" style="cursor: pointer">
-                    <th>Meeting 2</th>
-                    <td>01/01/2020 12:00</td>
-                    <td>Broad Lane Building LT01</td>
-                    <td>Emma Norling</td>
-                </tr>
-                <tr class="clickable-row" data-href="meeting_detail_pre.html" style="cursor: pointer">
-                    <th>Meeting 3</th>
-                    <td>01/01/2020 12:00</td>
-                    <td>Broad Lane Building LT01</td>
-                    <td>Emma Norling</td>
-                </tr>
-                <tr class="clickable-row" data-href="meeting_detail_pre.html" style="cursor: pointer">
-                    <th>Meeting 4</th>
-                    <td>01/01/2020 12:00</td>
-                    <td>Broad Lane Building LT01</td>
-                    <td>Emma Norling</td>
-                </tr>
-                <tr class="clickable-row" data-href="meeting_detail_pre.html" style="cursor: pointer">
-                    <th>Meeting 5</th>
-                    <td>01/01/2020 12:00</td>
-                    <td>Broad Lane Building LT01</td>
-                    <td>Emma Norling</td>
-                </tr>
+                <% for(var i=0;i<=allproject.length;i++) {%>
+                    <% if(allproject[i].time < nowtime){%>
+                        <tr class="clickable-row" data-href="meeting_detail_post.html" style="cursor: pointer">
+                            <th>Meeting 1</th>
+                            <td>01/01/2020 12:00</td>
+                            <td>Broad Lane Building LT01</td>
+                            <td>Emma Norling</td>
+                        </tr>
+                    <% } %>
+                    <%else {%>
+                        <tr class="clickable-row" data-href="meeting_detail_pre.html" style="cursor: pointer">
+                            <th>Meeting 2</th>
+                            <td>01/01/2020 12:00</td>
+                            <td>Broad Lane Building LT01</td>
+                            <td>Emma Norling</td>
+                        </tr>
+                    <% } %>
+                <% } %>
             </table>
         </div>
     </div>
