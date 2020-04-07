@@ -46,7 +46,37 @@ router.get('/my_project', function(req, res) {
         res.redirect('/signin');
     }
 });
-// router.get()
+
+router.get('/project_detail', function(req, res) {
+    Promise.all([
+        staffModel.getStaffByStaffID(staffID),
+        staffModel.getAllocatedTeamByStaffID(staffID),
+    ])
+        .then(function(result) {
+            const staff = result[0];
+            const allTeams = result[1];
+            let groupMember;
+            groupMember = '';
+            const max =allTeams[0].StudentID.length;
+            for (let j = 0; j < max; j++) {
+                groupMember = groupMember + allTeams[0].StudentID[j].Name;
+                if (j < max - 1) {
+                    groupMember = groupMember + ', ';
+                }
+            }
+            let meetingList = [];
+            meetingList = allTeams[0].StaffMeetingID;
+            let nowtime = new Date();
+            res.render('staff/project_detail', {
+                pageTitle: 'Project Detail',
+                username: staff.Name,
+                team: allTeams[0],
+                teamMemberList: groupMember,
+                allmeeting: meetingList,
+                nowtime: nowtime,
+            });
+        });
+});
 
 
 module.exports = router;

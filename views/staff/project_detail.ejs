@@ -3,52 +3,19 @@
 <!-- main content start-->
 <div id="page-wrapper">
     <div class="main-page">
-        <div class="blank-page widget-shadow scroll">
-            <h2><b>My Projects</b></h2>
-
-            <% if (allTeams.length == Number(0)) { %>
-                <div class="alert alert-danger" role="alert">You do not have a project currently!</div>
-            <% } else { %>
-                <% for(var i = 0; i < allTeams.length; i++) {%>
-                    <div class="grid_3 grid_5 widget-shadow" style="cursor:pointer" onclick="window.location.href = 'project_detail.html'">
-                        <h3 class="project-name" ><b><%= allTeams[i].ProposalID.Topic %></b><span class="label label-success" style="float:right;font-size:15px">Ongoing</span></h3>
-                        <p>
-                            <b>Representative:</b>
-                            <%= allTeams[i].Representer %>
-                        </p>
-                        <p>
-                            <b>Group Member:</b>
-                            <%= groupMember[i] %>
-                            <i class="fa fa-angle-right" style="float:right;font-size:20px"></i>
-                        </p>
-                    </div>
-                <% } %>
-            <% } %>
-
-        </div>
-    </div>
-</div>
-
-<!-- main content start-->
-<div id="page-wrapper">
-    <div class="main-page">
         <h2 class="title1">My Project</h2>
         <div class="blank-page widget-shadow scroll">
             <h3>Project Name</h3>
             <table width="100%">
                 <tr>
-                    <td width="30%"><P><b>Client : </b><%= project.client%>></P></td>
-                    <td width="30%"><p><b>Supervisor : </b><%= project.Team[1]%></p></td>
-                    <td width="30%"><p><b>Team: </b> <%= project.Team[0]%></p></td>
+                    <td width="30%"><P><b>Client : </b><%= team.ProposalID.ClientID.Name%></P></td>
+                    <td width="30%"><p><b>Supervisor : </b><%= team.StaffID.Name%></p></td>
+                    <td width="30%"><p><b>Team: </b> <%= team.TeamName.Name%></p></td>
                 </tr>
             </table>
             <p>
                 <b>Member : </b>
-                <% for(var i=0;i<=teamMemberList.length;i++) {%>
-                    <p>
-                        <%= teamMemberList[i]%>>
-                    </p>
-                <% } %>
+                <%= teamMemberList%>
             </p>
             <br>
             <!--                <div class="col-md-12 panel-grids">-->
@@ -57,7 +24,7 @@
                     <h3 class="panel-title">Project Detail</h3>
                 </div>
                 <div class="panel-body">
-                    <%= project.Content%>
+                    <%= team.ProposalID.Content%>
                 </div>
             </div>
             <!--                </div>-->
@@ -72,6 +39,7 @@
             <!-- Default panel contents -->
             <div class="panel-heading"><b>Meeting</b></div>
             <!-- Table -->
+            <p><%= team.StaffMeetingID.length%></p>
             <table class="table">
                 <tr>
                     <th></th>
@@ -79,24 +47,7 @@
                     <th>Place</th>
                     <th>Supervisor</th>
                 </tr>
-                <% for(var i=0;i<=allproject.length;i++) {%>
-                    <% if(allproject[i].Date < nowtime){%>
-                        <tr class="clickable-row" data-href="meeting_detail_post.html" style="cursor: pointer">
-                            <th>Meeting 1</th>
-                            <td><%= allproject[i].Date%></td>
-                            <td><%= allproject[i].Place%></td>
-                            <td><%= meetingStaff%></td>
-                        </tr>
-                    <% } %>
-                    <%else {%>
-                        <tr class="clickable-row" data-href="meeting_detail_pre.html" style="cursor: pointer">
-                            <th>Meeting 1</th>
-                            <td><%= allproject[i].Date%></td>
-                            <td><%= allproject[i].Place%></td>
-                            <td><%= meetingStaff%></td>
-                        </tr>
-                    <% } %>
-                <% } %>
+
             </table>
         </div>
     </div>
