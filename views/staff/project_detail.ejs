@@ -80,20 +80,20 @@
                     <th>Supervisor</th>
                 </tr>
                 <% for(var i=0;i<=allproject.length;i++) {%>
-                    <% if(allproject[i].time < nowtime){%>
+                    <% if(allproject[i].Date < nowtime){%>
                         <tr class="clickable-row" data-href="meeting_detail_post.html" style="cursor: pointer">
                             <th>Meeting 1</th>
-                            <td>01/01/2020 12:00</td>
-                            <td>Broad Lane Building LT01</td>
-                            <td>Emma Norling</td>
+                            <td><%= allproject[i].Date%></td>
+                            <td><%= allproject[i].Place%></td>
+                            <td><%= meetingStaff%></td>
                         </tr>
                     <% } %>
                     <%else {%>
                         <tr class="clickable-row" data-href="meeting_detail_pre.html" style="cursor: pointer">
-                            <th>Meeting 2</th>
-                            <td>01/01/2020 12:00</td>
-                            <td>Broad Lane Building LT01</td>
-                            <td>Emma Norling</td>
+                            <th>Meeting 1</th>
+                            <td><%= allproject[i].Date%></td>
+                            <td><%= allproject[i].Place%></td>
+                            <td><%= meetingStaff%></td>
                         </tr>
                     <% } %>
                 <% } %>
