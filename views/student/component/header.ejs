@@ -44,6 +44,12 @@
     <link href="/css/custom.css" rel="stylesheet">
     <!--//Metis Menu -->
 
+    <!-- calendar -->
+    <link rel="stylesheet" href="../../css/monthly.css">
+    <!-- //calendar -->
+
+    <link href="../../css/custom/discussion_details_style.css" rel='stylesheet' type='text/css' />
+
 </head>
 <body class="cbp-spmenu-push">
 <div class="main-content">
@@ -65,13 +71,13 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="sidebar-menu">
                         <li class="header">MAIN NAVIGATION</li>
-                        <li class="treeview"><a href="HTML/StudentPart/student_homepage.html"><i class="fa fa-dashboard"></i> <span>Home Page</span></a>
+                        <li class="treeview"><a href="/student/homepage"><i class="fa fa-dashboard"></i> <span>Home Page</span></a>
                         </li>
                         <li class="treeview"><a href="/student/all_projects"><i class="fa fa-folder"></i> <span>All Projects</span></a>
                         </li>
-                        <li class="treeview"><a href="HTML/StudentPart/StudentTimetable.html"><i class="fa fa-table"></i> <span>My Timetables</span></a>
+                        <li class="treeview"><a href="/student/timetable"><i class="fa fa-table"></i> <span>My Timetables</span></a>
                         </li>
-                        <li class="treeview"><a href="HTML/StudentPart/StudentQ&A.html"><i class="fa fa-edit"></i> <span>Q & A</span></a>
+                        <li class="treeview"><a href="/student/student_qa"><i class="fa fa-edit"></i> <span>Q & A</span></a>
                         </li>
                     </ul>
                 </div>
@@ -130,9 +136,9 @@
                     <li class="dropdown profile_details_drop">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <div class="profile_img">
-                                <span class="prfil-img"><img src="images/2.jpg" alt=""> </span>
+<!--                                <span class="prfil-img"><img src="images/2.jpg" alt=""> </span>-->
                                 <div class="user-name">
-                                    <p><%= username %></p>
+                                    <p><%= student.Name %></p>
                                     <span>Student</span>
                                 </div>
                                 <i class="fa fa-angle-down lnr"></i>

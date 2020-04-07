@@ -51,8 +51,8 @@ module.exports = {
      */
     getTeamByStudentID: function getTeamByStudentID(id) {
         return team
-            .find({StudentID: {$elemMatch: {$eq: id}}})
-            .populate('Proposal')
+            .findOne({StudentID: {$elemMatch: {$eq: id}}})
+            .populate({path: 'ProposalID', populate: {path: 'ClientID'}})
             .populate('StudentID')
             .populate('StaffID')
             .populate('Preference')

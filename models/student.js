@@ -7,8 +7,8 @@ module.exports = {
     /**
      * Author: TENG
      * User:
-     * @param {Number} id
-     * @return {student} a student object
+     * @param {ObjectId} id
+     * @return {Object} a student object
      */
     getStudentByStudentID: function getUserByStudentID(id) {
         return student
@@ -18,7 +18,7 @@ module.exports = {
     },
     /**
      * @param {Number} id
-     * @return {student} a student object
+     * @return {Object} a student object
      */
     getAllStudent: function getAllStudent() {
         return student
