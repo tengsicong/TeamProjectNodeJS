@@ -1,3 +1,4 @@
+const config = require('config-lite')(__dirname);
 const express = require('express');
 const session = require('express-session');
 const router = express.Router();
@@ -6,37 +7,16 @@ const clientModel = require('../models/client');
 const studentModel = require('../models/student');
 const staffModel = require('../models/staff');
 
+
 router.get('/', function(req, res) {
-    res.render('portal/signin', {
-        pageTitle: 'Team Project - Signin',
-    });
-});
-
-router.post('/staff/my_project', function(req, res) {
-    const email = req.fields.email;
-    const pw = req.fields.password;
-
-    Promise.all([
-        staffModel.getStaffByUserName(email),
-        staffModel.getAllocatedTeamByStaffID(staffID),
-    ])
-        .then(function(result) {
-            const staff = result[0];
-            const allTeams = result[1];
-
-            if (!staff && pw === staff.password) {
-                req.session.user = staff.username;
-                res.render('staff/my_project', {
-                    pageTitle: 'My Projects',
-                    username: staff.Name,
-                    allTeams: allTeams,
-                });
-            }
-            else {
-                res.render('portal/signin', {pageTitle: 'Team Project - Signin'});
-                throw new Error('Invalid username or password');
-            }
+    if (req.session.userinfo) {
+        res.redirect('/staff/my_project');
+    }
+    else {
+        res.render('portal/signin', {
+            pageTitle: 'Team Project - Signin',
         });
+    }
 });
 
 /**

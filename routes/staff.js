@@ -17,6 +17,28 @@ const staffID = mongoose.Types.ObjectId('5e7a97ab66135760069ca372');
 // getS(studentID)
 // console.log(s[0]);
 
+router.post('/my_project', function(req, res) {
+    const email = req.fields.email;
+    const pw = req.fields.password;
+
+    Promise.all([
+        staffModel.getStaffByUserName(email),
+    ])
+        .then(function(result) {
+            const staff = result[0];
+
+            if (!staff && pw === staff.password) {
+                req.session.userinfo = staff.UserName;
+                req.session.username = staff.Name;
+                res.redirect('/staff/my_project');
+            }
+            else {
+                res.redirect('/signin');
+                throw new Error('Invalid username or password');
+            }
+        });
+});
+
 router.get('/my_project', function(req, res) {
     Promise.all([
         staffModel.getStaffByStaffID(staffID),

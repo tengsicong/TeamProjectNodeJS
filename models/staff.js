@@ -51,7 +51,6 @@ module.exports = {
     },
 
     /**
-     * @param {ObjectId} id
      * @return {[staffs]} staff object
      */
     getAllStaff: function getAllStaff() {

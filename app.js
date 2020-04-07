@@ -25,7 +25,16 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({
+    secret: 'teamProject',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {maxAge: 60 * 60 * 1000},
+    store: new MongoStore({
+        url: config.mongodb,
+        touchAfter: 24 * 3600, // time period in seconds
+    }),
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
