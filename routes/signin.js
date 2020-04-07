@@ -15,10 +15,10 @@ router.post('/', function(req, res) {
     Promise.all([staffModel.getStaffByUserName(email)])
         .then(function(result) {
             const staff = result[0];
-            /*if (staff !== undefined) {
-                console.log('pw:' + staff.Password);
+            /*if (staff !== null) {
+                console.log(staff);
             }*/
-            if (staff !== undefined && pw === staff.Password) {
+            if (staff !== null && pw === staff.Password) {
                 req.session.userinfo = staff._id;
                 req.session.username = staff.UserName;
                 res.redirect('/staff/my_project');
